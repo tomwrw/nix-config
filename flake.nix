@@ -1,6 +1,6 @@
 {
   # For those who come after...
-  description = "nix-config - a NixOS and Home Manager configuration by solsnk.";
+  description = "nix-config - a NixOS and Home Manager configuration by tomwrw.";
 
   # Configure Nix to use additional binary caches and their public keys.
   # This speeds up builds by allowing Nix to download pre-built packages
