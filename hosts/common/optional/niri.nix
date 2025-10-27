@@ -20,6 +20,7 @@
     # PAM configuration for screen locking
     pam.services = {
       login.enableGnomeKeyring = true;
+      hyprlock = {};
     };
 
     # Polkit for privilege escalation

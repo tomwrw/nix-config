@@ -1,9 +1,13 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
-}: {
+}: let
+  colorBackground = config.colorScheme.palette.base00;
+  colourForeground = config.colorScheme.palette.base05;
+in {
   programs.waybar = {
     enable = true;
     package = pkgs.waybar;
@@ -59,7 +63,7 @@
         cpu = {
           interval = 5;
           format = "󰍛";
-          "on-click" = "$TERMINAL -e btop";
+          "on-click" = "alacritty -e btop";
         };
 
         clock = {
@@ -113,7 +117,7 @@
 
         pulseaudio = {
           format = "{icon}";
-          "on-click" = "$TERMINAL --class=Wiremix -e wiremix";
+          "on-click" = "alacritty -e wiremix";
           "on-click-right" = "pamixer -t";
           "tooltip-format" = "Playing at {volume}%";
           "scroll-step" = 5;
@@ -145,8 +149,8 @@
     };
     style = ''
 
-      @define-color background ${config.lib.stylix.colors.withHashtag.base00};
-      @define-color foreground ${config.lib.stylix.colors.withHashtag.base05};
+      @define-color background #${colorBackground};
+      @define-color foreground #${colourForeground};
 
       * {
         background-color: @background;
@@ -169,7 +173,7 @@
 
       #workspaces button {
         all: initial;
-        padding: 0 6px;
+        padding: 0 5px;
         margin: 0 1.5px;
         min-width: 9px;
       }

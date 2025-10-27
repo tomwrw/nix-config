@@ -4,9 +4,11 @@
   pkgs,
   config,
   outputs,
+  #nix-colors,
   ...
 }: {
   imports = [
+    inputs.nix-colors.homeManagerModules.default
     # Import my global Home Manager configs. These are configs
     # I apply to all my Home Manager users and all sit within
     # the cli subfolder..
@@ -22,8 +24,10 @@
     ./features/wm/niri
   ];
 
+  colorScheme = inputs.nix-colors.colorSchemes.tokyo-night-dark;
+
   stylix = {
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-terminal-dark.yaml";
     image = ../../assets/wallpaper/lakeside.png;
     polarity = "dark";
     targets = {
@@ -34,5 +38,19 @@
   theme = {
     borderWidth = 2.0;
     borderRadius = 0.0;
+  };
+
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+    };
+  };
+
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Adwaita-dark";
+      package = pkgs.gnome-themes-extra;
+    };
   };
 }

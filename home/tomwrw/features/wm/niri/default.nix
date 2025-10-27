@@ -9,6 +9,7 @@
     ./binds.nix
     ./rules.nix
 
+    ../hyprlock.nix
     ../hyprpaper.nix
     ../walker.nix
     ../waybar.nix
@@ -21,6 +22,10 @@
       seatd
       jaq
       impala
+      iwd
+      blueberry
+      wiremix
+      pamixer
     ];
   };
 }
