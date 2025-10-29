@@ -100,12 +100,12 @@
       '';
     };
     theme.style = ''
-      @define-color selected-text ${config.lib.stylix.colors.withHashtag.base08};
-      @define-color text ${config.lib.stylix.colors.withHashtag.base04};
-      @define-color base ${config.lib.stylix.colors.withHashtag.base02};
-      @define-color border ${config.lib.stylix.colors.withHashtag.base08};
-      @define-color foreground ${config.lib.stylix.colors.withHashtag.base05};
-      @define-color background ${config.lib.stylix.colors.withHashtag.base00};
+      @define-color selected-text #${config.colorScheme.palette.base08};
+      @define-color text #${config.colorScheme.palette.base04};
+      @define-color base #${config.colorScheme.palette.base02};
+      @define-color border #${config.colorScheme.palette.base08};
+      @define-color foreground #${config.colorScheme.palette.base05};
+      @define-color background #${config.colorScheme.palette.base00};
 
       /* Reset all elements */
       #window,

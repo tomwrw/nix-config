@@ -11,9 +11,7 @@
       # Import the Home Manager impermanence module in case
       # we have it declared for our system.
       inputs.impermanence.homeManagerModules.impermanence
-      # Import the stylix inputs so that we can use stylix
-      # for theming and styles.
-      inputs.stylix.homeModules.stylix
+      inputs.nix-colors.homeManagerModules.default
       # Import all cli features for this user on this host.
       # You can be granular here if you don't want to import
       # all features. Just specify the nix files individually
@@ -72,13 +70,6 @@
     sessionVariables = {
       NH_FLAKE = "$HOME/Development/nix-config";
     };
-  };
-
-  # Enable stylix but disable auto loading of
-  # targets. We want to control this manually.
-  stylix = {
-    enable = true;
-    autoEnable = false;
   };
 
   # Include some packages by default. I typically

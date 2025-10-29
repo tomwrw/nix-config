@@ -66,6 +66,10 @@
     # Theme engine stylix for custom colours and themeing.
     stylix.url = "github:nix-community/stylix";
     nix-colors.url = "github:misterio77/nix-colors";
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

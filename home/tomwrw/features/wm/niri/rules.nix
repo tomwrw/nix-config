@@ -45,6 +45,14 @@
       };
     }
     {
+      matches = [{is-active = true;}];
+      opacity = 0.99;
+    }
+    {
+      matches = [{is-active = false;}];
+      opacity = 0.95;
+    }
+    {
       matches = [{app-id = "org.telegram.desktop";}];
       block-out-from = "screencast";
     }

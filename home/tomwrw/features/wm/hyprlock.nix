@@ -7,7 +7,7 @@
 }: let
   palette = config.colorScheme.palette;
   convert = inputs.nix-colors.lib.conversions.hexToRGBString;
-  selected_wallpaper_path = config.stylix.image;
+  selected_wallpaper_path = config.theme.wallpaper;
 
   backgroundRgb = "rgba(${convert ", " palette.base00}, 0.8)";
   surfaceRgb = "rgb(${convert ", " palette.base02})";

@@ -9,11 +9,11 @@
     settings = {
       ipc = false;
       preload = [
-        "${config.stylix.image}"
+        "${config.theme.wallpaper}"
       ];
 
       wallpaper = [
-        ",${config.stylix.image}"
+        ",${config.theme.wallpaper}"
       ];
     };
   };

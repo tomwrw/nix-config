@@ -1,8 +1,10 @@
 {pkgs, ...}: {
   imports = [
     ./alacritty.nix
+    ./fastfetch.nix
     ./fish.nix
     ./git.nix
+    ./nixvim.nix
     ./zsh.nix
   ];
   home.packages = with pkgs; [

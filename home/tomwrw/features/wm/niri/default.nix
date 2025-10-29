@@ -26,6 +26,7 @@
       blueberry
       wiremix
       pamixer
+      nautilus
     ];
   };
 }

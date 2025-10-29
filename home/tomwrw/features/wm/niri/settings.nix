@@ -3,9 +3,7 @@
   lib,
   pkgs,
   ...
-}: let
-  opacity = lib.toHexString (((builtins.ceil (config.stylix.opacity.desktop * 100)) * 255) / 100);
-in {
+}: {
   programs.niri = {
     enable = true;
     package = pkgs.niri;
@@ -87,27 +85,27 @@ in {
 
       layout = {
         focus-ring.enable = false;
-        border = with config.lib.stylix.colors; {
+        border = with config.colorScheme.palette; {
           enable = true;
           active = {
             #color = "#${base08}${opacity}";
             gradient = {
-              to = "#${base0D}${opacity}";
-              from = "#${base08}${opacity}";
+              to = "#${base0D}";
+              from = "#${base08}";
             };
           };
           inactive = {
-            color = "#${base03}${opacity}";
+            color = "#${base03}";
           };
           width = config.theme.borderWidth;
         };
         shadow = {
           enable = true;
-          spread = 0.5;
+          spread = 0.01;
           offset.x = 0;
           offset.y = 0;
-          softness = 2;
-          draw-behind-window = true;
+          softness = 3.0;
+          draw-behind-window = false;
           color = "#000000";
         };
         preset-column-widths = [
