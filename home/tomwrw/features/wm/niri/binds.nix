@@ -5,7 +5,8 @@
 }: {
   programs.niri.settings.binds = with config.lib.niri.actions; {
     "Mod+Return".action = spawn "${pkgs.alacritty}/bin/alacritty";
-    "Mod+Space".action = spawn "walker";
+    "Mod+Space".action = spawn ["wofi" "-n" "--show" "drun"];
+    "Mod+Escape".action = spawn ["wofi-power-menu"];
 
     "Mod+Q".action = close-window;
     "Mod+S".action = switch-preset-column-width;

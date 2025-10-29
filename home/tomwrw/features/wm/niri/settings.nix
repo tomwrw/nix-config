@@ -57,7 +57,7 @@
             height = 1080;
             refresh = null;
           };
-          scale = 1.5;
+          scale = 1.0;
           position = {
             x = 0;
             y = 0;
@@ -88,11 +88,11 @@
         border = with config.colorScheme.palette; {
           enable = true;
           active = {
-            #color = "#${base08}${opacity}";
-            gradient = {
-              to = "#${base0D}";
-              from = "#${base08}";
-            };
+            color = "#${base08}";
+            #gradient = {
+            #  to = "#${base0D}";
+            #  from = "#${base08}";
+            #};
           };
           inactive = {
             color = "#${base03}";

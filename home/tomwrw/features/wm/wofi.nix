@@ -15,7 +15,8 @@
           margin: 0px;
           padding: 20px;
           background-color: #${config.colorScheme.palette.base00};
-          opacity: 0.95;
+          opacity: 0.99;
+          border: none;
         }
 
         #inner-box {
@@ -69,7 +70,7 @@
         }
 
         #entry:selected #text {
-          color: #${config.colorScheme.palette.base02};
+          color: #${config.colorScheme.palette.base08};
         }
 
         #entry image {
@@ -99,4 +100,26 @@
       gtk_dark = true;
     };
   };
+
+  home.packages = with pkgs; [
+    (
+      writeShellScriptBin "wofi-power-menu"
+      ''
+        entries="Lock Reboot Shutdown Logout"
+
+        selected=$(printf '%s\n' $entries |  wofi -n -i --dmenu --hide-search --hide-scroll --width 250 | awk '{print tolower($1)}')
+
+        case $selected in
+          logout)
+            exec niri msg action exit;;
+          lock)
+            exec hyprlock;;
+          reboot)
+            exec systemctl reboot;;
+          shutdown)
+            exec systemctl poweroff -i;;
+        esac
+      ''
+    )
+  ];
 }

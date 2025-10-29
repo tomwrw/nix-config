@@ -11,7 +11,7 @@
 
     ../hyprlock.nix
     ../hyprpaper.nix
-    ../walker.nix
+    ../wofi.nix
     ../waybar.nix
   ];
 
