@@ -24,9 +24,8 @@
       spawn-at-startup = [
         {command = ["${pkgs.xwayland-satellite}/bin/xwayland-satellite"];}
         {command = ["waybar"];}
-        #{command = ["wl-paste" "--watch" "cliphist" "store"];}
-        #{command = ["wl-paste" "--type text" "--watch" "cliphist" "store"];}
-        #{command = ["qs" "-c" "DankMaterialShell"];}
+        {command = ["wl-paste" "--watch" "cliphist" "store"];}
+        #{command = ["clipsync"];}
       ];
       input = {
         keyboard.xkb.layout = "gb";
@@ -49,7 +48,7 @@
         warp-mouse-to-focus.enable = true;
         workspace-auto-back-and-forth = true;
       };
-      screenshot-path = "~/Pictures/Screenshots/Screenshot-from-%Y-%m-%d-%H-%M-%S.png";
+      screenshot-path = "~/Pictures/Screenshots/Screenshot-%Y-%m-%d-%H-%M-%S.png";
       outputs = {
         "Virtual-1" = {
           mode = {

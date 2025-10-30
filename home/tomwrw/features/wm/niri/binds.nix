@@ -11,6 +11,7 @@
     "Mod+Q".action = close-window;
     "Mod+S".action = switch-preset-column-width;
     "Mod+F".action = maximize-column;
+    "Mod+V".action = spawn-sh ["cliphist list | wofi -n -d -p Clipboard | cliphist decode | wl-copy"];
 
     "Mod+1".action = set-column-width "25%";
     "Mod+2".action = set-column-width "50%";

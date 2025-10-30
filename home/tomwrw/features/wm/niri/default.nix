@@ -51,6 +51,11 @@
       wiremix
       pamixer
       nautilus
+      wl-clipboard
+      cliphist
+      xclip
+      gnome-keyring
+      seahorse
     ];
   };
 }
