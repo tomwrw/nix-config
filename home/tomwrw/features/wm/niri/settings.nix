@@ -87,7 +87,7 @@
         border = with config.colorScheme.palette; {
           enable = true;
           active = {
-            color = "#${base08}";
+            color = "#${base05}";
             #gradient = {
             #  to = "#${base0D}";
             #  from = "#${base08}";
