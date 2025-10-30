@@ -42,7 +42,7 @@
     ../../common/optional/pipewire.nix
     ../../common/optional/virt-manager.nix
     # Import my user configs.
-    ../../common/users/solsnk
+    ../../common/users/tomwrw
     # Import my desktop.
     ../../common/optional/cosmic.nix
   ];

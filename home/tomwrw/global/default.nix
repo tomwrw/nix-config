@@ -11,13 +11,17 @@
       # Import the Home Manager impermanence module in case
       # we have it declared for our system.
       inputs.impermanence.homeManagerModules.impermanence
+      # Import nix-colors as this is used throughout this
+      # configuration to theme applications.
       inputs.nix-colors.homeManagerModules.default
-      # Import all cli features for this user on this host.
-      # You can be granular here if you don't want to import
-      # all features. Just specify the nix files individually
-      # if needed. I import the folder so that the default.nix
-      # imports all features in the folder.
-      ../features/cli
+      # Import all global features for this user on this
+      # host. I could use a default file in required folders
+      # but I found it better to be specific and import
+      # one by one.
+      ../features/cli/alacritty.nix
+      ../features/cli/git.nix
+      ../features/cli/nixvim.nix
+      ../features/cli/zsh.nix
     ]
     # Include any custom Home Manager modules I have defined.
     ++ (builtins.attrValues outputs.homeManagerModules);
@@ -63,7 +67,8 @@
 
   # Set up my Home Manager instance.
   home = {
-    username = lib.mkDefault "solsnk";
+    # TODO: Adjust username here accordingly.
+    username = lib.mkDefault "tomwrw";
     homeDirectory = lib.mkDefault "/home/${config.home.username}";
     stateVersion = lib.mkDefault "25.05";
     sessionPath = ["$HOME/.local/bin"];
@@ -75,13 +80,25 @@
   # Include some packages by default. I typically
   # include anything I need to work with nix.
   home.packages = with pkgs; [
-    nixd # Nix LSP.
-    alejandra # Nix formatter.
-    nixfmt-rfc-style # Another nix formatter.
-    nvd # Differ.
-    nix-diff # Differ, more detailed.
+    comma # Install and run programs by sticking a , before them
+    distrobox # Nice escape hatch, integrates docker images with my environment
+    bc # Calculator
+    bottom # System viewer
+    ncdu # TUI disk usage
+    eza # Better ls
+    ripgrep # Better grep
+    fd # Better find
+    httpie # Better curl
+    jq # JSON pretty printer and manipulator
+    timer # To help with my ADHD paralysis
+    viddy # Better watch
+    nixd # Nix LSP
+    alejandra # Nix formatter
+    nixfmt-rfc-style
+    nvd # Differ
+    nix-diff # Differ, more detailed
     nix-output-monitor
-    nh # A nice wrapper for managing NixOS and Home Manager.
+    nh # Nice wrapper for NixOS and HM
   ];
 
   # Global persists for anything that could be global

@@ -32,23 +32,23 @@ This configuration has a multiple system entry points, with Home Manager configu
 
 ### Getting Started.
 
-To deploy a configuration, you can use the `nixos-rebuild` command with the appropriate flake output. For example, to deploy the `otacon` configuration on the local machine:
+To deploy a configuration, you can use the `nixos-rebuild` command with the appropriate flake output. For example, to deploy the `endgame` configuration on the local machine:
 
 ```bash
 # To build the configuration
-nixos-rebuild build --flake .#otacon
+nixos-rebuild build --flake .#endgame
 
 # To test the configuration
-nixos-rebuild test --flake .#otacon
+nixos-rebuild test --flake .#endgame
 
 # To apply the configuration
-sudo nixos-rebuild switch --flake .#otacon
+sudo nixos-rebuild switch --flake .#endgame
 ```
 
 To deploy to a remote machine over SSH, you can use the `--flake` and `--target-host` flags:
 
 ```bash
-nixos-rebuild switch --flake .#otacon --target-host solsnk@otacon --use-remote-sudo
+nixos-rebuild switch --flake .#endgame --target-host tomwrw@endgame --use-remote-sudo
 ```
 
 ### Customization.
@@ -107,11 +107,11 @@ sudo sbctl status
 
 | System | Description | Type | OS | CPU | GPU |
 |---|---|---|---|---|---|
-| otacon | My personal desktop | Custom build | NixOS | AMD Ryzen 7800X3D | AMD 9070XT |
-| quiet | My mobile workstation | Surface Pro 7 | NixOS | Intel i7-1065G7 | Intel iGPU |
-| raiden | My test VM | QEMU VM | NixOS | Host passthrough | OpenGL/3D accelerated |
+| endgame | My personal desktop | Custom build | NixOS | AMD Ryzen 7800X3D | AMD 9070XT |
+| flatmate | My mobile workstation | Surface Pro 7 | NixOS | Intel i7-1065G7 | Intel iGPU |
+| spectre | My test VM | QEMU VM | NixOS | Host passthrough | OpenGL/3D accelerated |
 
-I have a single user that I manage through Home Manager (solsnk). You may add additional users or rename mine to inherit my existing settings - though don't forget to change my hashedPassword to something of your own otherwise you won't be able to log in.
+I have a single user that I manage through Home Manager (tomwrw). You may add additional users or rename mine to inherit my existing settings - though don't forget to change my hashedPassword to something of your own otherwise you won't be able to log in.
 
 ### File structure.
 
@@ -123,9 +123,9 @@ I use the following structure to organise my configurations.
 ├── assets                # Stores additional items such as wallpapers and avatars.
 │   ├── avatars           # User avatars/profile pictures.
 │   ├── images            # Images used for this repo, such as logos.
-│   └── wallpapers        # Wallpapers I used on my system that are used by Stylix.
+│   └── wallpapers        # Wallpapers I used on my system that are used by my theme module.
 ├── home                  # Home folder that contains a folder for each Home Manager user.
-│   └── solsnk            # My primary user, managed by Home Manager.
+│   └── tomwrw            # My primary user, managed by Home Manager.
 │       ├── global        # Global Home Manager configs, all imported and applied to the user.
 │       └── features      # Optional Home Manager configs, selectively imported per user.
 ├── modules               # Modules folder, containing a subfolder for both NixOS and Home Manager.
@@ -137,8 +137,9 @@ I use the following structure to organise my configurations.
 │   │   ├── optional      # Optional system configs, selectively imported per host.
 │   │   └── users         # Optional user settings to apply on selected systems with options.
 │   └── nixos             # NixOS hosts managed by megadots.
-│       └── otacon        # The configuration for my primary desktop system.
-│       └── raiden        # The configuration for my test VM.
+│       └── endgame       # The configuration for my primary desktop system.
+│       └── flatmate      # The configuration for my mobile device, a Surface Pro 7.
+│       └── spectre       # The configuration for my test VM.
 ├── overlays              # Overlays folder containing any patches or overrides.
 ├── pkgs                  # Pkgs folder for storing any custom packaged apps.
 ```

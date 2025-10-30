@@ -11,15 +11,22 @@
     # I apply to all my Home Manager users and all sit within
     # the cli subfolder..
     ./global
-    # Import my features for the user on this host. This can
-    # either be the folder itself (all contents imported via
-    # the included default.nix) or individual nix files wihin
-    # each feature subfolder if I want to be selective.
-    ./features/comms
+    # Import my features for the user on this host.
+    ./features/comms/element-desktop.nix
+    ./features/comms/signal-desktop.nix
+    ./features/comms/vesktop.nix
+    ./features/development/code-cursor.nix
+    ./features/development/hugo.nix
+    ./features/development/terraform.nix
     ./features/development/vscodium.nix
-    ./features/productivity
+    ./features/media/digikam.nix
+    ./features/media/spicetify.nix
+    ./features/productivity/bitwarden.nix
+    ./features/productivity/ente.nix
+    ./features/productivity/firefox.nix
+    ./features/productivity/obsidian.nix
     # Import my desktop/window manager/compositor.
-    ./features/wm/niri
+    ./features/wm/niri/niri.nix
   ];
 
   colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-hard;
