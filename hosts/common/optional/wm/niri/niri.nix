@@ -5,7 +5,7 @@
   ...
 }: {
   imports = [
-    #inputs.niri.nixosModules.niri
+    ../gdm.nix
   ];
   nixpkgs.overlays = [inputs.niri.overlays.niri];
   # Enable niri
@@ -66,6 +66,7 @@
     # Theme support
     libsForQt5.qt5.qtwayland
     qt6.qtwayland
+    qt5.qtwayland
     libsForQt5.qt5ct
     qt6ct
 

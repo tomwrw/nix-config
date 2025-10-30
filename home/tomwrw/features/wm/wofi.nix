@@ -106,18 +106,17 @@
       writeShellScriptBin "wofi-power-menu"
       ''
         entries="Lock Reboot Shutdown Logout"
-
         selected=$(printf '%s\n' $entries |  wofi -n -i --dmenu --hide-search --hide-scroll --width 250 | awk '{print tolower($1)}')
 
         case $selected in
-          logout)
-            exec niri msg action exit;;
           lock)
             exec hyprlock;;
           reboot)
             exec systemctl reboot;;
           shutdown)
             exec systemctl poweroff -i;;
+          logout)
+            exec niri msg action quit -s;;
         esac
       ''
     )

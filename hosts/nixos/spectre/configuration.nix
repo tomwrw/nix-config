@@ -35,7 +35,7 @@
     # Import my user configs.
     ../../common/users/tomwrw
     # Import my desktop.
-    ../../common/optional/niri.nix
+    ../../common/optional/wm/niri/niri.nix
   ];
 
   # Boot loader settings are usually unique to my hosts
