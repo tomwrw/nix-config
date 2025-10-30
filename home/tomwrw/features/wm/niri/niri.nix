@@ -12,6 +12,7 @@
     ../hypridle.nix
     ../hyprlock.nix
     ../hyprpaper.nix
+    ../mako.nix
     ../satty.nix
     ../wofi.nix
     ../waybar.nix
