@@ -3,7 +3,27 @@
   lib,
   pkgs,
   ...
-}: {
+}: let
+  toNiriOutput = monitor: {
+    mode = {
+      width = monitor.width;
+      height = monitor.height;
+      refresh =
+        if monitor.refreshRate == 0
+        then null
+        else monitor.refreshRate;
+    };
+    scale = monitor.scale;
+    position = {
+      x = 0;
+      y = 0;
+    };
+  };
+  niriOutputs = lib.listToAttrs (lib.map (monitor: {
+    name = monitor.name;
+    value = toNiriOutput monitor;
+  }) (lib.filter (m: m.enabled) config.monitors));
+in {
   programs.niri = {
     enable = true;
     package = pkgs.niri;
@@ -49,32 +69,7 @@
         workspace-auto-back-and-forth = true;
       };
       screenshot-path = "~/Pictures/Screenshots/Screenshot-%Y-%m-%d-%H-%M-%S.png";
-      outputs = {
-        "Virtual-1" = {
-          mode = {
-            width = 1920;
-            height = 1080;
-            refresh = null;
-          };
-          scale = 1.0;
-          position = {
-            x = 0;
-            y = 0;
-          };
-        };
-        "HDMI-A-1" = {
-          mode = {
-            width = 1920;
-            height = 1080;
-            refresh = null;
-          };
-          scale = 1.0;
-          position = {
-            x = 0;
-            y = -1080;
-          };
-        };
-      };
+      outputs = niriOutputs;
 
       overview = {
         workspace-shadow.enable = false;
