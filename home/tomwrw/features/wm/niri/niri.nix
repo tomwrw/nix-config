@@ -60,7 +60,6 @@
       seahorse
       grim
       slurp
-      #satty
     ];
   };
 }

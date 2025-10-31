@@ -14,10 +14,6 @@
     "Mod+V".action = spawn-sh ["pkill wofi || cliphist list | wofi -n -d -p Clipboard | cliphist decode | wl-copy"];
     "Mod+L".action = spawn ["hyprlock"];
 
-    #"Mod+Z".action = spawn-sh ["grim -g \"$(slurp)\" - | wl-copy"];
-    #"Mod+Print".action = spawn-sh ["grim ~/Pictures/Screenshots/$(date +'%Y%m%d_%H%M%S').png | wl-copy"];
-    #"Mod+Shift+Print".action = spawn-sh ["grim -g \"$(slurp)\" satty --filename - --output-filename ~/Pictures/Screenshots/$(date +'%Y%m%d_%H%M%S').png --early-exit --actions-on-enter save-to-clipboard --save-after-copy --copy-command 'wl-copy'"];
-
     "Print".action.screenshot = [];
     "Print".hotkey-overlay.title = "Screenshot via Niri";
     "Mod+Print".action = spawn "satty-screenshot";

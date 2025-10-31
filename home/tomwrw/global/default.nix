@@ -19,6 +19,7 @@
       # but I found it better to be specific and import
       # one by one.
       ../features/cli/alacritty.nix
+      ../features/cli/btop.nix
       ../features/cli/git.nix
       ../features/cli/nixvim.nix
       ../features/cli/zsh.nix
@@ -87,6 +88,7 @@
     ncdu # TUI disk usage
     eza # Better ls
     ripgrep # Better grep
+    fastfetch # System overview
     fd # Better find
     httpie # Better curl
     jq # JSON pretty printer and manipulator

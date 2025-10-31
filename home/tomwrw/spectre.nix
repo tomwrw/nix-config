@@ -29,10 +29,16 @@
     ./features/wm/niri/niri.nix
   ];
 
+  # Set up theming for this user on this host using stylix.
+  # This is important as I refer to stylix lib and colors
+  # throughout many modules within this configuration.
   stylix = {
+    # Set up the initial stylix config.
     base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-terminal-dark.yaml";
     image = ../../assets/wallpaper/diner.png;
     polarity = "dark";
+    # Set up firefox target and disable any targets that
+    # use custom coloring in the module itself.
     targets = {
       firefox = {
         firefoxGnomeTheme.enable = true;
@@ -41,6 +47,7 @@
       mako.enable = false;
       waybar.enable = false;
     };
+    # Set my theme preferences for the user on this host.
     fonts = {
       emoji = {
         package = pkgs.noto-fonts-emoji;
@@ -61,11 +68,15 @@
     };
   };
 
+  # Use my custom theme module to supply additional
+  # theme options that are not currently covered
+  # within stylix.
   theme = {
     borderWidth = 2.0;
     borderRadius = 0.0;
   };
 
+  # Set up the monitos for this host.
   monitors = [
     {
       name = "Virtual-1";
