@@ -5,14 +5,13 @@
   inputs,
   ...
 }: let
-  palette = config.colorScheme.palette;
-  convert = inputs.nix-colors.lib.conversions.hexToRGBString;
-  selected_wallpaper_path = config.theme.wallpaper;
-
-  backgroundRgb = "rgba(${convert ", " palette.base00}, 0.8)";
-  surfaceRgb = "rgb(${convert ", " palette.base02})";
-  foregroundRgb = "rgb(${convert ", " palette.base05})";
-  foregroundMutedRgb = "rgb(${convert ", " palette.base04})";
+  # palette = config.colorScheme.palette;
+  # convert = inputs.nix-colors.lib.conversions.hexToRGBString;
+  # selected_wallpaper_path = config.theme.wallpaper;
+  # backgroundRgb = "rgba(${convert ", " palette.base00}, 0.8)";
+  # surfaceRgb = "rgb(${convert ", " palette.base02})";
+  # foregroundRgb = "rgb(${convert ", " palette.base05})";
+  # foregroundMutedRgb = "rgb(${convert ", " palette.base04})";
 in {
   programs.hyprlock = {
     enable = true;
@@ -22,7 +21,7 @@ in {
       };
       background = {
         monitor = "";
-        path = selected_wallpaper_path;
+        #path = selected_wallpaper_path;
         blur_passes = 3;
         # brightness = 0.5;
       };
@@ -34,17 +33,17 @@ in {
         halign = "center";
         valign = "center";
 
-        inner_color = surfaceRgb;
-        outer_color = foregroundRgb; # #d3c6aa
+        #inner_color = surfaceRgb;
+        #outer_color = foregroundRgb; # #d3c6aa
         outline_thickness = 4;
 
-        font_family = "CaskaydiaMono Nerd Font";
+        #font_family = "CaskaydiaMono Nerd Font";
         #font_size = 32;
-        font_color = foregroundRgb;
+        #font_color = foregroundRgb;
 
         #placeholder_color = foregroundMutedRgb;
         placeholder_text = "  Enter Password 󰈷 ";
-        check_color = "rgba(131, 192, 146, 1.0)";
+        #check_color = "rgba(131, 192, 146, 1.0)";
         fail_text = "Wrong";
 
         rounding = 0;
@@ -56,9 +55,9 @@ in {
         monitor = "";
         text = "\$FPRINTPROMPT";
         text_align = "center";
-        color = "rgb(211, 198, 170)";
-        font_size = 24;
-        font_family = "CaskaydiaMono Nerd Font";
+        #color = "rgb(211, 198, 170)";
+        #font_size = 24;
+        #font_family = "CaskaydiaMono Nerd Font";
         position = "0, -100";
         halign = "center";
         valign = "center";

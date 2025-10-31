@@ -29,26 +29,41 @@
     ./features/wm/niri/niri.nix
   ];
 
-  colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-hard;
+  stylix = {
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-terminal-dark.yaml";
+    image = ../../assets/wallpaper/diner.png;
+    polarity = "dark";
+    targets = {
+      firefox = {
+        firefoxGnomeTheme.enable = true;
+        profileNames = ["default"];
+      };
+      mako.enable = false;
+      waybar.enable = false;
+    };
+    fonts = {
+      emoji = {
+        package = pkgs.noto-fonts-emoji;
+        name = "Noto Color Emoji";
+      };
+      monospace = {
+        package = pkgs.nerd-fonts.dejavu-sans-mono;
+        name = "CaskaydiaMono Nerd Font";
+      };
+      sansSerif = {
+        package = pkgs.source-han-sans;
+        name = "Source Han Sans SC";
+      };
+      serif = {
+        package = pkgs.source-han-serif;
+        name = "Source Han Serif SC";
+      };
+    };
+  };
 
   theme = {
-    wallpaper = ../../assets/wallpaper/hanged-man-tree.png;
     borderWidth = 2.0;
     borderRadius = 0.0;
-  };
-
-  dconf.settings = {
-    "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
-    };
-  };
-
-  gtk = {
-    enable = true;
-    theme = {
-      name = "Adwaita-dark";
-      package = pkgs.gnome-themes-extra;
-    };
   };
 
   monitors = [

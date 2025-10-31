@@ -4,6 +4,9 @@
   pkgs,
   ...
 }: let
+  colors = config.lib.stylix.colors;
+  colorBorderActive = colors.base05;
+  colorBorderInactive = colors.base03;
   toNiriOutput = monitor: {
     mode = {
       width = monitor.width;
@@ -82,14 +85,14 @@ in {
         border = with config.colorScheme.palette; {
           enable = true;
           active = {
-            color = "#${base05}";
+            color = "#${colorBorderActive}";
             #gradient = {
             #  to = "#${base0D}";
             #  from = "#${base08}";
             #};
           };
           inactive = {
-            color = "#${base03}";
+            color = "#${colorBorderInactive}";
           };
           width = config.theme.borderWidth;
         };

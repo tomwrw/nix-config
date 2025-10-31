@@ -15,9 +15,9 @@
 
   programs.nixvim = {
     enable = true;
-    colorschemes.base16.enable = true;
-    colorschemes.base16.autoLoad = true;
-    colorschemes.base16.colorscheme = config.colorScheme.slug;
+    #colorschemes.base16.enable = true;
+    #colorschemes.base16.autoLoad = true;
+    #colorschemes.base16.colorscheme = config.colorScheme.slug;
 
     defaultEditor = true;
     extraPlugins = with pkgs; [vimPlugins.haskell-tools-nvim vimPlugins.vim-horizon];

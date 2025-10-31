@@ -2,84 +2,14 @@
   config,
   pkgs,
   ...
-}: {
-  home.file = {
-    ".config/wofi/style.css" = {
-      text = ''
-        * {
-          font-family: 'CaskaydiaMono Nerd Font', monospace;
-          font-size: 18px;
-        }
-
-        window {
-          margin: 0px;
-          padding: 20px;
-          background-color: #${config.colorScheme.palette.base00};
-          opacity: 0.99;
-          border: none;
-        }
-
-        #inner-box {
-          margin: 0;
-          padding: 0;
-          border: none;
-          background-color: #${config.colorScheme.palette.base00};
-        }
-
-        #outer-box {
-          margin: 0;
-          padding: 20px;
-          border: none;
-          background-color: #${config.colorScheme.palette.base00};
-        }
-
-        #scroll {
-          margin: 0;
-          padding: 0;
-          border: none;
-          background-color: #${config.colorScheme.palette.base00};
-        }
-
-        #input {
-          margin: 0;
-          padding: 10px;
-          border: none;
-          background-color: #${config.colorScheme.palette.base00};
-          color: @text;
-        }
-
-        #input:focus {
-          outline: none;
-          box-shadow: none;
-          border: none;
-        }
-
-        #text {
-          margin: 5px;
-          border: none;
-          color: #${config.colorScheme.palette.base06};
-        }
-
-        #entry {
-          background-color: #${config.colorScheme.palette.base00};
-        }
-
-        #entry:selected {
-          outline: none;
-          border: none;
-        }
-
-        #entry:selected #text {
-          color: #${config.colorScheme.palette.base08};
-        }
-
-        #entry image {
-          -gtk-icon-transform: scale(0.7);
-        }
-      '';
-    };
-  };
-
+}: let
+  colors = config.lib.stylix.colors;
+  fonts = config.stylix.fonts;
+  colorBackground = colors.base00;
+  colorForeground = colors.base05;
+  colorSelected = colors.base03;
+  fontMono = fonts.monospace.name;
+in {
   programs.wofi = {
     enable = true;
     settings = {
@@ -99,6 +29,91 @@
       image_size = 40;
       gtk_dark = true;
     };
+    style = ''
+      @define-color background #${colorBackground};
+      @define-color foreground #${colorForeground};
+      @define-color selected #${colorSelected};
+
+        * {
+          font-family: '${fontMono}', monospace;
+          font-size: 18px;
+        }
+
+        window {
+          margin: 0px;
+          padding: 20px;
+          background-color: @background;
+          opacity: 0.99;
+          border: none;
+        }
+
+        #inner-box {
+          margin: 0;
+          padding: 0;
+          border: none;
+          background-color: @background;
+        }
+
+        #outer-box {
+          margin: 0;
+          padding: 20px;
+          border: none;
+          background-color: @background;
+        }
+
+        #scroll {
+          margin: 0;
+          padding: 0;
+          border: none;
+          background-color: @background;
+        }
+
+        #input {
+          margin: 0;
+          padding: 10px;
+          border: none;
+          background-color: @background;
+          color: @foreground;
+        }
+
+        #input:focus {
+          outline: none;
+          box-shadow: none;
+          border: none;
+        }
+
+        #text {
+          margin: 5px;
+          border: none;
+          color: @foreground;
+        }
+
+        #entry {
+
+        }
+
+        #entry:nth-child(odd) {
+          background-color: transparent;
+        }
+
+        #entry:nth-child(even) {
+          background-color: transparent;
+        }
+
+        #entry:selected {
+          outline: none;
+          border: none;
+          background-color: @selected;
+        }
+
+        #entry:selected #text {
+
+        }
+
+        #entry image {
+          -gtk-icon-transform: scale(0.7);
+        }
+    '';
   };
 
   home.packages = with pkgs; [

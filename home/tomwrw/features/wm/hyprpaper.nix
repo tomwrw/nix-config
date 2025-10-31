@@ -8,13 +8,13 @@
     enable = true;
     settings = {
       ipc = false;
-      preload = [
-        "${config.theme.wallpaper}"
-      ];
+      # preload = [
+      #   "${config.theme.wallpaper}"
+      # ];
 
-      wallpaper = [
-        ",${config.theme.wallpaper}"
-      ];
+      # wallpaper = [
+      #   ",${config.theme.wallpaper}"
+      # ];
     };
   };
 }
