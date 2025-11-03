@@ -86,10 +86,6 @@ in {
           enable = true;
           active = {
             color = "#${colorBorderActive}";
-            #gradient = {
-            #  to = "#${base0D}";
-            #  from = "#${base08}";
-            #};
           };
           inactive = {
             color = "#${colorBorderInactive}";
@@ -113,7 +109,7 @@ in {
         ];
         default-column-width = {proportion = 0.5;};
 
-        gaps = config.theme.spacing.m;
+        gaps = config.theme.spacing.s;
         struts = {
           left = 0;
           right = 0;

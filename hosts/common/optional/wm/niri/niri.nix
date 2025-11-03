@@ -68,7 +68,7 @@
     qt6.qtwayland
     qt5.qtwayland
     libsForQt5.qt5ct
-    qt6ct
+    qt6Packages.qt6ct
 
     # Portal dependencies
     xdg-desktop-portal
@@ -87,7 +87,7 @@
     packages = with pkgs; [
       font-awesome
       noto-fonts
-      noto-fonts-emoji
+      noto-fonts-color-emoji
       noto-fonts-cjk-sans
       liberation_ttf
       fira-code
