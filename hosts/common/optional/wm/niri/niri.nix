@@ -4,15 +4,33 @@
   lib,
   ...
 }: {
-  imports = [
-    ../gdm.nix
-  ];
+  # imports = [
+  #   ../gdm.nix
+  # ];
   nixpkgs.overlays = [inputs.niri.overlays.niri];
-  # Enable niri
+  # Enable niri.
   programs.niri = {
     enable = true;
-    # Enable xwayland for compatibility with X11 applications
     package = pkgs.niri-unstable;
+  };
+
+  # Enable XDG desktop portal for niri.
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-gnome
+    ];
+    config = {
+      niri = {
+        default = [
+          "gnome"
+          "gtk"
+        ];
+        "org.freedesktop.impl.portal.Screenshot" = ["gnome"];
+        "org.freedesktop.impl.portal.Screencast" = ["gnome"];
+      };
+    };
   };
 
   # Session management and authentication
@@ -28,98 +46,15 @@
     rtkit.enable = true;
   };
 
-  # System packages required for niri
-  environment.systemPackages = with pkgs; [
-    # Core Wayland
-    wayland
-    wayland-protocols
-    wayland-utils
-    wlroots
-    egl-wayland # EGL Wayland platform
-
-    # X11/Wayland compatibility
-    inputs.niri.packages.${pkgs.system}.xwayland-satellite-unstable
-
-    # System utilities
-    wl-clipboard
-    wl-clip-persist
-    cliphist
-    libnotify
-
-    # File managers
-    xdg-utils
-
-    # System monitoring and control
-    brightnessctl
-    playerctl
-    pavucontrol
-
-    # Screenshot tools
-    grim
-    slurp
-    swappy
-
-    # Development and utilities
-    jq # For scripting
-    socat # For IPC
-
-    # Theme support
-    libsForQt5.qt5.qtwayland
-    qt6.qtwayland
-    qt5.qtwayland
-    libsForQt5.qt5ct
-    qt6Packages.qt6ct
-
-    # Portal dependencies
-    xdg-desktop-portal
-    xdg-desktop-portal-gtk
-    xdg-desktop-portal-wlr
-    xdg-desktop-portal-gnome
-
-    # Cursor themes
-    adwaita-icon-theme
-    bibata-cursors
-  ];
-
-  # Fonts configuration
-  fonts = {
-    enableDefaultPackages = true;
-    packages = with pkgs; [
-      font-awesome
-      noto-fonts
-      noto-fonts-color-emoji
-      noto-fonts-cjk-sans
-      liberation_ttf
-      fira-code
-      fira-code-symbols
-      jetbrains-mono
-      nerd-fonts.jetbrains-mono
-      nerd-fonts.fira-code
-      nerd-fonts.hack
-      nerd-fonts.meslo-lg
-    ];
-
-    fontconfig = {
-      enable = true;
-      antialias = true;
-      cache32Bit = true;
-      hinting.enable = true;
-      hinting.style = "slight";
-      subpixel.rgba = "rgb";
-
-      defaultFonts = {
-        serif = ["Noto Serif" "Liberation Serif"];
-        sansSerif = ["Noto Sans" "Liberation Sans"];
-        monospace = ["JetBrainsMono Nerd Font" "Liberation Mono"];
-        emoji = ["Noto Color Emoji"];
-      };
-    };
-  };
-
   # Niri-specific environment variables
   environment.sessionVariables = {
     XDG_CURRENT_DESKTOP = lib.mkDefault "niri";
     XDG_SESSION_DESKTOP = lib.mkDefault "niri";
+    NIXOS_OZONE_WL = "1";
+    MOZ_ENABLE_WAYLAND = "1";
+    QT_QPA_PLATFORM = "wayland";
+    SDL_VIDEODRIVER = "wayland";
+    _JAVA_AWT_WM_NONREPARENTING = "1";
   };
 
   # Services configuration
@@ -155,14 +90,10 @@
 
     # Firmware updates
     fwupd.enable = true;
-
-    # System monitoring
-    #smartd.enable = true;
   };
 
-  # Systemd configuration for better Wayland integration
+  # Systemd configuration for better Wayland integration.
   systemd = {
-    # Systemd user environment
     user.extraConfig = ''
       DefaultEnvironment="PATH=/run/current-system/sw/bin"
     '';

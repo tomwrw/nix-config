@@ -21,7 +21,7 @@
       ../features/cli/alacritty.nix
       ../features/cli/btop.nix
       ../features/cli/git.nix
-      ../features/cli/nixvim.nix
+      ../features/cli/neovim.nix
       ../features/cli/zsh.nix
     ]
     # Include any custom Home Manager modules I have defined.
@@ -154,7 +154,7 @@
       }
     ];
     files = [
-      ".face"
+      #".face"
       ".screenrc"
     ];
   };
