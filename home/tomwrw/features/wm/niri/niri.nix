@@ -16,7 +16,7 @@
     ../hyprpaper.nix
     # ../mako.nix
     # ../satty.nix
-    # ../wofi.nix
+    ../wofi.nix
     ../waybar.nix
   ];
 
@@ -52,8 +52,8 @@
       # pavucontrol
       # seatd
       # jaq
-      # impala
-      # iwd
+      impala
+      iwd
       blueberry
       wiremix
       pamixer

@@ -27,6 +27,7 @@
         ];
 
         modules-right = [
+          "network"
           "pulseaudio"
           "bluetooth"
           "cpu"
@@ -60,13 +61,15 @@
         };
 
         cpu = {
-          interval = 5;
-          format = "CPU: {usage}%";
+          interval = 3;
+          format = "cpu: {icon}";
+          format-icons = ["󰄰" "󰪞" "󰪟" "󰪠" "󰪡" "󰪢" "󰪣" "󰪤" "󰪥"];
         };
 
         memory = {
-          interval = 5;
-          format = "MEM: {percentage}%";
+          interval = 3;
+          format = "mem: {icon}";
+          format-icons = ["󰄰" "󰪞" "󰪟" "󰪠" "󰪡" "󰪢" "󰪣" "󰪤" "󰪥"];
         };
 
         bluetooth = {
@@ -87,6 +90,20 @@
           format-icons = {
             default = ["" "" ""];
           };
+        };
+
+        network = {
+          format-icons = ["󰤯" "󰤟" "󰤢" "󰤥" "󰤨"];
+          format = "{icon}";
+          format-wifi = "{icon}";
+          format-ethernet = "󰀂";
+          format-disconnected = "󰤮";
+          tooltip-format-wifi = "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}";
+          tooltip-format-ethernet = "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}";
+          tooltip-format-disconnected = "Disconnected";
+          interval = 3;
+          spacing = 1;
+          on-click = "alacritty -e impala";
         };
       };
     };
@@ -145,7 +162,8 @@
       #cpu,
       #memory,
       #bluetooth,
-      #pulseaudio {
+      #pulseaudio,
+      #network {
         padding: 0 8px;
         background: ${base0D};
         color: ${base00};

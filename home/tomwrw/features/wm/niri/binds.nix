@@ -8,8 +8,9 @@
     "Mod+Return".action = spawn "${pkgs.alacritty}/bin/alacritty";
     "Mod+E".action = spawn "${pkgs.nemo}/bin/nemo";
     "Mod+Q".action = close-window;
-    # "Mod+Space".action = spawn-sh ["pkill wofi || wofi -n --show drun"];
-    # "Mod+Escape".action = spawn-sh ["pkill wofi || wofi-power-menu"];
+    "Mod+F".action = maximize-column;
+    "Mod+Space".action = spawn-sh ["pkill wofi || wofi -n --show drun"];
+    "Mod+Escape".action = spawn-sh ["pkill wofi || wofi-power-menu"];
 
     # Groups/tabs.
     "Mod+G".action = toggle-column-tabbed-display;

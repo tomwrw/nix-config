@@ -87,16 +87,17 @@
     lib = nixpkgs.lib // home-manager.lib;
     # A helper function to apply a function across all
     # supported systems.
-    forEachSystem = f: lib.genAttrs (import systems) (system: f pkgsFor.${system});
+    forEachSystem = f: lib.mapAttrs (name: pkgs: f pkgs) pkgsFor;
     # A set of Nixpkgs packages for each supported system,
     # with unfree packages enabled.
-    pkgsFor = lib.genAttrs (import systems) (
-      system:
-        import nixpkgs {
-          inherit system;
-          config.allowUnfree = true;
-        }
-    );
+    pkgsFor =
+      lib.mapAttrs (
+        name: pkgs:
+          pkgs.override {
+            config.allowUnfree = true;
+          }
+      )
+      nixpkgs.legacyPackages;
   in {
     inherit lib;
     # Expose custom NixOS modules for the configuration.
@@ -115,9 +116,7 @@
     # Define a development shell with specific tools
     # for working on the flake, such as `alejandra`
     # for formatting and `git` for version control.
-    devShells = forEachSystem (system: let
-      pkgs = nixpkgs.legacyPackages.${system};
-    in {
+    devShells = forEachSystem (pkgs: {
       default = pkgs.mkShell {
         packages = [
           # Packages to include in devShell.
