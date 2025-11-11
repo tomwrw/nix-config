@@ -121,7 +121,6 @@ I use the following structure to organise my configurations.
 .
 ├── flake.nix             # My flake. Entry point for system configs.
 ├── assets                # Stores additional items such as wallpapers and avatars.
-│   ├── avatars           # User avatars/profile pictures.
 │   ├── images            # Images used for this repo, such as logos.
 │   └── wallpapers        # Wallpapers I used on my system that are used by my theme module.
 ├── home                  # Home folder that contains a folder for each Home Manager user.
