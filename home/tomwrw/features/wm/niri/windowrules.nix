@@ -29,5 +29,15 @@
       matches = [{is-active = false;}];
       opacity = 0.95;
     }
+    {
+      matches = [
+        {app-id = "zen";}
+        {app-id = "firefox";}
+        {app-id = "chromium-browser";}
+        {app-id = "edge";}
+        {app-id = "codium";}
+      ];
+      open-maximized = true;
+    }
   ];
 }

@@ -30,10 +30,21 @@
     # "Mod+Shift+Print".action = spawn "satty-screenshot-region";
     # "Mod+Shift+Print".hotkey-overlay.title = "Screeshot Region via Satty";
 
-    "Mod+1".action = set-column-width "25%";
-    "Mod+2".action = set-column-width "50%";
-    "Mod+3".action = set-column-width "75%";
-    "Mod+4".action = set-column-width "100%";
+    "Mod+1".action.focus-workspace = [1];
+    "Mod+2".action.focus-workspace = [2];
+    "Mod+3".action.focus-workspace = [3];
+    "Mod+4".action.focus-workspace = [4];
+    "Mod+5".action.focus-workspace = [5];
+    "Mod+Shift+1".action.move-column-to-workspace = [1];
+    "Mod+Shift+2".action.move-column-to-workspace = [2];
+    "Mod+Shift+3".action.move-column-to-workspace = [3];
+    "Mod+Shift+4".action.move-column-to-workspace = [4];
+    "Mod+Shift+5".action.move-column-to-workspace = [5];
+
+    # "Mod+1".action = set-column-width "25%";
+    # "Mod+2".action = set-column-width "50%";
+    # "Mod+3".action = set-column-width "75%";
+    # "Mod+4".action = set-column-width "100%";
 
     # "Mod+Shift+F".action = expand-column-to-available-width;
     # "Mod+G".action = toggle-window-floating;

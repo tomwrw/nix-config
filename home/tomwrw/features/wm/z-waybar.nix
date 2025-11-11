@@ -40,6 +40,7 @@ in {
         ];
 
         "niri/workspaces" = {
+          all-outputs = true;
           "on-click" = "activate";
           format = "{icon}";
           "format-icons" = {
@@ -55,12 +56,8 @@ in {
             "9" = "9";
             active = "󱓻";
           };
-          "persistent-workspaces" = {
-            "1" = [];
-            "2" = [];
-            "3" = [];
-            "4" = [];
-            "5" = [];
+          persistent_workspaces = {
+            "*" = [1 2 3 4 5];
           };
         };
 

@@ -17,7 +17,7 @@
     # ../mako.nix
     # ../satty.nix
     ../wofi.nix
-    ../waybar.nix
+    ../y-waybar.nix
   ];
 
   # xdg.configFile."electron-flags.conf".text = ''
@@ -55,6 +55,7 @@
       impala
       iwd
       blueberry
+      bluez
       wiremix
       pamixer
       # nautilus

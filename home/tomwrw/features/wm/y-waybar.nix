@@ -10,7 +10,7 @@
     package = pkgs.waybar;
 
     settings = {
-      main = {
+      main = with config.lib.stylix.colors.withHashtag; {
         reload_style_on_change = true;
         layer = "top";
         position = "top";
@@ -28,8 +28,9 @@
 
         modules-right = [
           "network"
-          "pulseaudio"
           "bluetooth"
+          "pulseaudio"
+          "disk"
           "cpu"
           "memory"
         ];
@@ -62,34 +63,40 @@
 
         cpu = {
           interval = 3;
-          format = "cpu: {icon}";
-          format-icons = ["󰄰" "󰪞" "󰪟" "󰪠" "󰪡" "󰪢" "󰪣" "󰪤" "󰪥"];
+          format = "CPU {usage:03}%";
         };
 
         memory = {
           interval = 3;
-          format = "mem: {icon}";
-          format-icons = ["󰄰" "󰪞" "󰪟" "󰪠" "󰪡" "󰪢" "󰪣" "󰪤" "󰪥"];
+          format = "MEM {percentage:03}%";
+        };
+
+        disk = {
+          interval = 30;
+          format = "DSK {percentage_used:03}%";
+          path = "/";
         };
 
         bluetooth = {
-          format = "";
-          format-disabled = "󰂲";
-          format-connected = "";
-          tooltip-format = "Devices connected: {num_connections}";
+          format = "<s>BLU {num_connections:03}</s>";
+          format-disabled = "<s>BLU 000</s>";
+          format-on = "BLU {num_connections:03}";
+          format-connected = "BLU {num_connections:03}";
           on-click = "blueberry";
+          on-right-click = "bluetoothctl power toggle";
+          tooltip-format = "{controller_alias}\t{controller_address}\n\n{num_connections} connected";
+          tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}";
+          tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
+          tooltip-format-enumerate-connected-battery = "{device_alias}\t{device_address}\t{device_battery_percentage}%";
         };
 
         pulseaudio = {
-          format = "{icon}";
+          format = "VOL {volume:03}%";
+          format-muted = "<s>VOL {volume:03}%</s>";
           on-click = "alacritty -e wiremix";
           on-click-right = "pamixer -t";
           tooltip-format = "Playing at {volume}%";
           scroll-step = 5;
-          format-muted = "";
-          format-icons = {
-            default = ["" "" ""];
-          };
         };
 
         network = {
@@ -105,6 +112,28 @@
           spacing = 1;
           on-click = "alacritty -e impala";
         };
+
+        # network = {
+        #   format-wifi = "SEN {bandwidthUpBits:>3} REC {bandwidthDownBits:>3}";
+        #   format-ethernet = "SEN {bandwidthUpBits:>3} REC {bandwidthDownBits:>3}";
+        #   format-disconnected = "<s>SEN {bandwidthUpBits:>3} REC {bandwidthDownBits:>3}</s>";
+        #   tooltip-format = "{ipaddr}/{cidr} - {essid}";
+        #   interval = 1;
+        # };
+
+        # network = {
+        #   format-icons = ["󰤯" "󰤟" "󰤢" "󰤥" "󰤨"];
+        #   format = "{icon}";
+        #   format-wifi = "{icon}";
+        #   format-ethernet = "󰀂";
+        #   format-disconnected = "󰤮";
+        #   tooltip-format-wifi = "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}";
+        #   tooltip-format-ethernet = "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}";
+        #   tooltip-format-disconnected = "Disconnected";
+        #   interval = 3;
+        #   spacing = 1;
+        #   on-click = "alacritty -e impala";
+        # };
       };
     };
     style = with config.lib.stylix.colors.withHashtag; ''
@@ -124,8 +153,9 @@
       #workspaces {
         background: ${base01};
       }
+
       #workspaces button {
-        padding: 0 8px;
+        padding: 0 4px;
       }
 
       #workspaces button.active {
@@ -161,6 +191,7 @@
 
       #cpu,
       #memory,
+      #disk,
       #bluetooth,
       #pulseaudio,
       #network {
