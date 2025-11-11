@@ -3,7 +3,30 @@
   lib,
   pkgs,
   ...
-}: {
+}: let
+  colors = config.lib.stylix.colors;
+  colorBorderActive = colors.base05;
+  colorBorderInactive = colors.base03;
+  toNiriOutput = monitor: {
+    mode = {
+      width = monitor.width;
+      height = monitor.height;
+      refresh =
+        if monitor.refreshRate == 0
+        then null
+        else monitor.refreshRate;
+    };
+    scale = monitor.scale;
+    position = {
+      x = 0;
+      y = 0;
+    };
+  };
+  niriOutputs = lib.listToAttrs (lib.map (monitor: {
+    name = monitor.name;
+    value = toNiriOutput monitor;
+  }) (lib.filter (m: m.enabled) config.monitors));
+in {
   programs.niri = {
     enable = true;
     package = pkgs.niri;
@@ -21,8 +44,15 @@
         QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
         SDL_VIDEODRIVER = "wayland";
       };
+      spawn-at-startup = [
+        {command = ["${pkgs.xwayland-satellite}/bin/xwayland-satellite"];}
+        {command = ["waybar"];}
+        {command = ["wl-paste" "--watch" "cliphist" "store"];}
+        #{command = ["clipsync"];}
+      ];
       input = {
         keyboard.xkb.layout = "gb";
+
         touchpad = {
           click-method = "button-areas";
           dwt = true;
@@ -39,8 +69,10 @@
           max-scroll-amount = "90%";
         };
         warp-mouse-to-focus.enable = true;
-        workspace-auto-back-and-forth = false;
+        workspace-auto-back-and-forth = true;
       };
+      screenshot-path = "~/Pictures/Screenshots/Screenshot-%Y-%m-%d-%H-%M-%S.png";
+      outputs = niriOutputs;
 
       overview = {
         workspace-shadow.enable = false;
@@ -50,31 +82,25 @@
 
       layout = {
         focus-ring.enable = false;
-        border = {
+        border = with config.colorScheme.palette; {
           enable = true;
-          width = 2.0;
-          active.color = "#${config.lib.stylix.colors.base0D}";
-          inactive.color = "#${config.lib.stylix.colors.base03}";
+          active = {
+            color = "#${colorBorderActive}";
+          };
+          inactive = {
+            color = "#${colorBorderInactive}";
+          };
+          width = config.theme.borderWidth;
         };
-        # border = with config.colorScheme.palette; {
-        #   enable = true;
-        #   active = {
-        #     color = "#${colorBorderActive}";
-        #   };
-        #   inactive = {
-        #     color = "#${colorBorderInactive}";
-        #   };
-        #   width = config.theme.borderWidth;
-        # };
-        # shadow = {
-        #   enable = true;
-        #   spread = 0.01;
-        #   offset.x = 0;
-        #   offset.y = 0;
-        #   softness = 3.0;
-        #   draw-behind-window = false;
-        #   color = "#000000";
-        # };
+        shadow = {
+          enable = true;
+          spread = 0.01;
+          offset.x = 0;
+          offset.y = 0;
+          softness = 3.0;
+          draw-behind-window = false;
+          color = "#000000";
+        };
         preset-column-widths = [
           {proportion = 0.25;}
           {proportion = 0.5;}
@@ -83,14 +109,13 @@
         ];
         default-column-width = {proportion = 0.5;};
 
-        gaps = 8;
-
-        # struts = {
-        #   left = 0;
-        #   right = 0;
-        #   top = 0;
-        #   bottom = 0;
-        # };
+        gaps = config.theme.spacing.s;
+        struts = {
+          left = 0;
+          right = 0;
+          top = 0;
+          bottom = 0;
+        };
 
         tab-indicator = {
           hide-when-single-tab = true;
@@ -105,25 +130,20 @@
       };
 
       animations = {
-        enable = false;
-        #   window-open = {
-        #     kind.easing = {
-        #       curve = "ease-out-expo";
-        #       duration-ms = 100;
-        #     };
-        #   };
-        #   window-close.kind.easing = {
-        #     curve = "ease-out-quad";
-        #     duration-ms = 100;
-        #   };
+        enable = true;
+        window-open = {
+          kind.easing = {
+            curve = "ease-out-expo";
+            duration-ms = 100;
+          };
+        };
+        window-close.kind.easing = {
+          curve = "ease-out-quad";
+          duration-ms = 100;
+        };
       };
-
-      # Hide client-side decorations.
       prefer-no-csd = true;
-      # Skip the hotkey overview on launch.
       hotkey-overlay.skip-at-startup = true;
-      # Default screenshot path.
-      screenshot-path = "~/Pictures/Screenshots/Screenshot-%Y-%m-%d-%H-%M-%S.png";
     };
   };
 }

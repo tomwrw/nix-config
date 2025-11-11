@@ -25,13 +25,17 @@ in {
             type = types.int;
             example = 1080;
           };
-          refreshRate = mkOption {
+          refresh = mkOption {
             type = types.float;
             default = 60;
           };
-          position = mkOption {
-            type = types.str;
-            default = "auto";
+          posx = mkOption {
+            type = types.int;
+            default = 0;
+          };
+          posy = mkOption {
+            type = types.int;
+            default = 0;
           };
           scale = mkOption {
             type = types.float;

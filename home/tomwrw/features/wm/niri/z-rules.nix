@@ -75,6 +75,7 @@
         {app-id = "firefox";}
         {app-id = "chromium-browser";}
         {app-id = "edge";}
+        {app-id = "codium";}
       ];
       open-maximized = true;
     }
