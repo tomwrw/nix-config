@@ -6,15 +6,6 @@
   ...
 }: {
   options.theme = {
-    wallpaper = lib.mkOption {
-      type = lib.types.nullOr lib.types.path;
-      default = null;
-      apply = builtins.toString;
-      example = ../assets/wallpaper/wallpaper.png;
-      description = ''
-        Specify the wallpaper to use for this theme.
-      '';
-    };
     borderRadius = lib.mkOption {
       type = lib.types.float;
       default = 4.0;

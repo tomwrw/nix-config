@@ -5,8 +5,12 @@
   pkgs,
   ...
 }: let
-  colorBackground = config.colorScheme.palette.base00;
-  colourForeground = config.colorScheme.palette.base05;
+  colors = config.lib.stylix.colors;
+  fonts = config.stylix.fonts;
+  colorBackground = colors.base00;
+  colorForeground = colors.base06;
+  colorForegroundUrgent = colors.base08;
+  fontMono = fonts.monospace.name;
 in {
   programs.waybar = {
     enable = true;
@@ -36,6 +40,7 @@ in {
         ];
 
         "niri/workspaces" = {
+          all-outputs = true;
           "on-click" = "activate";
           format = "{icon}";
           "format-icons" = {
@@ -51,12 +56,8 @@ in {
             "9" = "9";
             active = "󱓻";
           };
-          "persistent-workspaces" = {
-            "1" = [];
-            "2" = [];
-            "3" = [];
-            "4" = [];
-            "5" = [];
+          persistent_workspaces = {
+            "*" = [1 2 3 4 5];
           };
         };
 
@@ -150,7 +151,8 @@ in {
     style = ''
 
       @define-color background #${colorBackground};
-      @define-color foreground #${colourForeground};
+      @define-color foreground #${colorForeground};
+      @define-color foregroundUrgent #${colorForegroundUrgent};
 
       * {
         background-color: @background;
@@ -159,7 +161,7 @@ in {
         border: none;
         border-radius: 0;
         min-height: 0;
-        font-family: 'CaskaydiaMono Nerd Font';
+        font-family: '${fontMono}', monospace;
         font-size: 12px;
       }
 
@@ -171,6 +173,10 @@ in {
         margin-right: 8px;
       }
 
+      .warning, .critical, .urgent {
+        color: @foregroundUrgent;
+      }
+
       #workspaces button {
         all: initial;
         padding: 0 5px;
@@ -180,6 +186,10 @@ in {
 
       #workspaces button.empty {
         opacity: 0.5;
+      }
+
+      #workspaces button.urgent {
+        color: red;
       }
 
       #cpu,

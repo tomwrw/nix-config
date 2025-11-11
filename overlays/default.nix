@@ -13,12 +13,15 @@ in {
   # from other flakes in your configuration without having to manually dig
   # through `inputs`. It intelligently looks for `packages` or `legacyPackages`
   # on the flake for the current system.
-  flake-inputs = final: _: {
+  flake-inputs = final: _: let
+    hostSystem = final.stdenv.hostPlatform.system;
+  in {
     inputs =
       builtins.mapAttrs (
         _: flake: let
-          legacyPackages = (flake.legacyPackages or {}).${final.system} or {};
-          packages = (flake.packages or {}).${final.system} or {};
+          # Use the new path for attribute lookups
+          legacyPackages = (flake.legacyPackages or {}).${hostSystem} or {};
+          packages = (flake.packages or {}).${hostSystem} or {};
         in
           if legacyPackages != {}
           then legacyPackages
@@ -32,7 +35,7 @@ in {
   # channel on a system that primarily uses `nixpkgs-unstable`. You can
   # install a stable package with `pkgs.stable.package-name`.
   stable = final: _: {
-    stable = inputs.nixpkgs-stable.legacyPackages.${final.system};
+    stable = inputs.nixpkgs-stable.legacyPackages.${final.stdenv.hostPlatform.system};
   };
 
   #linux-firmware-override = final: prev: {

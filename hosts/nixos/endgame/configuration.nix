@@ -6,7 +6,7 @@
 }: {
   # Set the host-specific hostname here.
   networking = {
-    hostName = "otacon";
+    hostName = "endgame";
     domain = "home.arpa";
   };
 
@@ -17,11 +17,6 @@
   # global configs (stuff shared between all hosts), optional configs, and
   # my user configs for any users I want added to this host.
   imports = [
-    # Import the relevant common hardware modules from the hardware flake
-    # for this specific host.
-    inputs.hardware.nixosModules.common-cpu-amd
-    inputs.hardware.nixosModules.common-gpu-amd
-    inputs.hardware.nixosModules.common-pc-ssd
     # Import the disko disk configuration for this host.
     ./disks.nix
     # Import the specific hardware-configuration.nix for this host.
@@ -38,13 +33,12 @@
     ../../common/optional/gaming.nix
     ../../common/optional/graphics.nix
     ../../common/optional/lanzaboote.nix
-    #../../common/optional/minecraft.nix
     ../../common/optional/pipewire.nix
     ../../common/optional/virt-manager.nix
     # Import my user configs.
     ../../common/users/tomwrw
     # Import my desktop.
-    ../../common/optional/cosmic.nix
+    ../../common/optional/wm/cosmic/cosmic.nix
   ];
 
   # Boot loader settings are usually unique to my hosts
@@ -80,18 +74,10 @@
     kernelParams = [];
   };
 
-  #hardware.amdgpu.initrd.enable = true; # load amdgpu kernelModules in stage 1.
-  #hardware.amdgpu.opencl.enable = true; # OpenCL support - general compute API for gpu
-  #hardware.amdgpu.amdvlk.enable = true; # additional, alternative drivers.
-
   # Host specific apps go here. These will only be
   # installed on this host.
   environment.systemPackages = with pkgs; [
     hello
-    lact
-    clinfo # opencl testing
-    vulkan-tools # vulkaninfo
-    ipmiview
     unetbootin
   ];
 }

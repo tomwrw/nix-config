@@ -29,35 +29,69 @@
     ./features/wm/niri/niri.nix
   ];
 
-  colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-hard;
+  # Set up theming for this user on this host using stylix.
+  # This is important as I refer to stylix lib and colors
+  # throughout many modules within this configuration.
+  stylix = {
+    # Set up the initial stylix config.
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/everforest.yaml";
+    image = ../../assets/wallpaper/hanged-man-tree.png;
+    polarity = "dark";
+    # Set up firefox target and disable any targets that
+    # use custom coloring in the module itself.
+    targets = {
+      firefox = {
+        firefoxGnomeTheme.enable = true;
+        profileNames = ["default"];
+      };
+      mako.enable = false;
+      waybar.enable = false;
+    };
+    # Set my cursor preferences.
+    cursor = {
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Classic";
+      size = 16;
+    };
+    # Set my theme preferences for the user on this host.
+    fonts = {
+      emoji = {
+        package = pkgs.noto-fonts-color-emoji;
+        name = "Noto Color Emoji";
+      };
+      monospace = {
+        package = pkgs.nerd-fonts.dejavu-sans-mono;
+        name = "CaskaydiaMono Nerd Font";
+      };
+      sansSerif = {
+        package = pkgs.source-han-sans;
+        name = "Source Han Sans SC";
+      };
+      serif = {
+        package = pkgs.source-han-serif;
+        name = "Source Han Serif SC";
+      };
+    };
+  };
 
+  # Use my custom theme module to supply additional
+  # theme options that are not currently covered
+  # within stylix.
   theme = {
-    wallpaper = ../../assets/wallpaper/hanged-man-tree.png;
     borderWidth = 2.0;
     borderRadius = 0.0;
   };
 
-  dconf.settings = {
-    "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
-    };
-  };
-
-  gtk = {
-    enable = true;
-    theme = {
-      name = "Adwaita-dark";
-      package = pkgs.gnome-themes-extra;
-    };
-  };
-
+  # Set up the monitos for this host.
   monitors = [
     {
       name = "Virtual-1";
       width = 1920;
       height = 1080;
-      refreshRate = 60.0;
+      refresh = 60.0;
       scale = 1.0;
+      posx = 0;
+      posy = 0;
       workspace = "1";
       primary = true;
     }

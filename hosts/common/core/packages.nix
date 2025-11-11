@@ -9,9 +9,7 @@
   # Apps installed on all hosts go here.
   environment.systemPackages = with pkgs; [
     alejandra # A code formatter for nix.
-    btop # Resource monitor with graphs.
     easyeffects # Pipewire equalizer.
-    fastfetch # System information tool.
     fd # Fast alternative to 'find'.
     fzf # Command-line fuzzy finder.
     gnome-keyring

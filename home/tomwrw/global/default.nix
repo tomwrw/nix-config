@@ -11,16 +11,17 @@
       # Import the Home Manager impermanence module in case
       # we have it declared for our system.
       inputs.impermanence.homeManagerModules.impermanence
-      # Import nix-colors as this is used throughout this
+      # Import stylix as this is used throughout this
       # configuration to theme applications.
-      inputs.nix-colors.homeManagerModules.default
+      inputs.stylix.homeModules.stylix
       # Import all global features for this user on this
       # host. I could use a default file in required folders
       # but I found it better to be specific and import
       # one by one.
       ../features/cli/alacritty.nix
+      ../features/cli/btop.nix
       ../features/cli/git.nix
-      ../features/cli/nixvim.nix
+      ../features/cli/neovim.nix
       ../features/cli/zsh.nix
     ]
     # Include any custom Home Manager modules I have defined.
@@ -87,6 +88,7 @@
     ncdu # TUI disk usage
     eza # Better ls
     ripgrep # Better grep
+    fastfetch # System overview
     fd # Better find
     httpie # Better curl
     jq # JSON pretty printer and manipulator
@@ -100,6 +102,12 @@
     nix-output-monitor
     nh # Nice wrapper for NixOS and HM
   ];
+
+  # Turn on stylix for themes.
+  stylix = {
+    enable = true;
+    autoEnable = true;
+  };
 
   # Global persists for anything that could be global
   # or optional for nixos configs, like Steam.
@@ -146,7 +154,7 @@
       }
     ];
     files = [
-      ".face"
+      #".face"
       ".screenrc"
     ];
   };

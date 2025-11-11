@@ -12,7 +12,6 @@
   ...
 }: let
   diskId = "/dev/disk/by-id/nvme-Sabrent_SB-RKT5-2TB_48836385600606";
-  hostname = config.networking.hostName;
 in {
   imports = [
     inputs.disko.nixosModules.disko
@@ -53,9 +52,9 @@ in {
                 };
                 content = {
                   type = "btrfs";
-                  extraArgs = ["-L" "${hostname}" "-f"];
+                  extraArgs = ["-L" "nixos" "-f"];
                   postCreateHook = ''
-                    mount -t btrfs /dev/disk/by-label/${hostname} /mnt
+                    mount -t btrfs /dev/disk/by-label/nixos /mnt
                     btrfs subvolume snapshot -r /mnt /mnt/root-blank
                     umount /mnt
                   '';

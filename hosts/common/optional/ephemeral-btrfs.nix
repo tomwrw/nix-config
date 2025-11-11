@@ -4,10 +4,9 @@
   config,
   ...
 }: let
-  hostname = config.networking.hostName;
   rollbackScript = ''
     mkdir /mnt
-    mount -t btrfs -o subvol=/ /dev/disk/by-label/${hostname} /mnt
+    mount -t btrfs -o subvol=/ /dev/disk/by-label/nixos /mnt
     btrfs subvolume list -o /mnt/root | cut -f 9- -d ' ' | while read subvolume; do
       echo "deleting subvolume: /$subvolume..."
       btrfs subvolume delete "/mnt/$subvolume" 1>/dev/null
@@ -26,10 +25,10 @@ in {
     systemd.services.rollback = {
       description = "Rollback BTRFS root subvolume to a pristine state";
       wantedBy = ["initrd.target"];
-      requires = ["dev-disk-by\\x2dlabel-${hostname}.device"];
+      requires = ["dev-disk-by\\x2dlabel-nixos.device"];
       after = [
-        "dev-disk-by\\x2dlabel-${hostname}.device"
-        "systemd-cryptsetup@${hostname}.service"
+        "dev-disk-by\\x2dlabel-nixos.device"
+        "systemd-cryptsetup@nixos.service"
       ];
       before = ["sysroot.mount"];
       unitConfig.DefaultDependencies = "no";
