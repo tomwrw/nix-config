@@ -25,17 +25,17 @@
     config = {
       common = {
         #default = ["gtk" "gnome" "gnome-keyring"];
-        default = ["gtk" "gnome"];
+        default = ["gtk" "gnome" "gnome-keyring"];
       };
       niri = {
         #default = ["gtk" "gnome" "gnome-keyring"];
-        default = ["gtk" "gnome"];
+        default = ["gtk" "gnome" "gnome-keyring"];
       };
     };
     extraPortals = with pkgs; [
       xdg-desktop-portal-gtk
       xdg-desktop-portal-gnome
-      #gnome-keyring
+      gnome-keyring
     ];
     xdgOpenUsePortal = true;
   };
