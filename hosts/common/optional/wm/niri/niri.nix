@@ -4,9 +4,9 @@
   lib,
   ...
 }: {
-  # imports = [
-  #   ../gdm.nix
-  # ];
+  imports = [
+    ../greetd.nix
+  ];
   nixpkgs.overlays = [inputs.niri.overlays.niri];
   # Enable niri.
   programs.niri = {

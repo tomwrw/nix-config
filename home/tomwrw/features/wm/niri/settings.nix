@@ -104,6 +104,27 @@
         };
       };
 
+      workspaces = {
+        "01-web" = {
+          name = "web";
+        };
+        "02-code" = {
+          name = "code";
+        };
+        "03-virt" = {
+          name = "virt";
+        };
+        "04-cli" = {
+          name = "cli";
+        };
+        "05-chat" = {
+          name = "chat";
+        };
+        "06-game" = {
+          name = "game";
+        };
+      };
+
       animations = {
         enable = false;
         #   window-open = {

@@ -56,9 +56,6 @@ in {
             "9" = "9";
             active = "󱓻";
           };
-          persistent_workspaces = {
-            "*" = [1 2 3 4 5];
-          };
         };
 
         cpu = {

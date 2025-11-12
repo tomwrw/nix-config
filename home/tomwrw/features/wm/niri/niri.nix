@@ -11,19 +11,14 @@
     ./settings.nix
     ./windowrules.nix
 
-    # ../hypridle.nix
-    # ../hyprlock.nix
+    ../hypridle.nix
+    ../hyprlock.nix
     ../hyprpaper.nix
-    # ../mako.nix
+    ../mako.nix
     # ../satty.nix
     ../wofi.nix
-    ../y-waybar.nix
+    ../z-waybar.nix
   ];
-
-  # xdg.configFile."electron-flags.conf".text = ''
-  #   --enable-features=UseOzonePlatform
-  #   --ozone-platform=wayland
-  # '';
 
   xdg.portal = {
     enable = true;
@@ -48,7 +43,7 @@
   home = {
     packages = with pkgs; [
       nemo
-      # xwayland-satellite
+      xwayland-satellite
       # pavucontrol
       # seatd
       # jaq
@@ -58,12 +53,13 @@
       bluez
       wiremix
       pamixer
+      libnotify
       # nautilus
       # wl-clipboard
       # cliphist
       # xclip
-      # gnome-keyring
-      # seahorse
+      gnome-keyring
+      seahorse
       # grim
       # slurp
     ];

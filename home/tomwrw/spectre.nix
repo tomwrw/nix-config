@@ -44,7 +44,7 @@
         firefoxGnomeTheme.enable = true;
         profileNames = ["default"];
       };
-      mako.enable = false;
+      #mako.enable = false;
       waybar.enable = false;
     };
     # Set my cursor preferences.

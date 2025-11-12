@@ -35,9 +35,25 @@
         {app-id = "firefox";}
         {app-id = "chromium-browser";}
         {app-id = "edge";}
+      ];
+      open-maximized = true;
+      open-on-workspace = "web";
+    }
+    {
+      matches = [
         {app-id = "codium";}
       ];
       open-maximized = true;
+      open-on-workspace = "code";
+    }
+    {
+      matches = [
+        {app-id = "element";}
+        {app-id = "signal";}
+        {app-id = "whatsapp";}
+      ];
+      open-maximized = true;
+      open-on-workspace = "chat";
     }
   ];
 }

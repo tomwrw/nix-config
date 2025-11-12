@@ -8,7 +8,6 @@
   ...
 }: let
   diskId = "/dev/vda";
-  hostname = config.networking.hostName;
 in {
   imports = [
     inputs.disko.nixosModules.disko
@@ -36,9 +35,9 @@ in {
               size = "100%";
               content = {
                 type = "btrfs";
-                extraArgs = ["-L" "${hostname}" "-f"];
+                extraArgs = ["-L" "nixos" "-f"];
                 postCreateHook = ''
-                  mount -t btrfs /dev/disk/by-label/${hostname} /mnt
+                  mount -t btrfs /dev/disk/by-label/nixos /mnt
                   btrfs subvolume snapshot -r /mnt /mnt/root-blank
                   umount /mnt
                 '';

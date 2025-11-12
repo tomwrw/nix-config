@@ -2,20 +2,10 @@
   config,
   pkgs,
   ...
-}: let
-  colors = config.lib.stylix.colors;
-  colorBackground = colors.base00;
-  colorText = colors.base05;
-  colorBorder = colors.base04;
-  colorProgress = colors.base0D;
-in {
+}: {
   services.mako = {
     enable = true;
     settings = {
-      background-color = "#${colorBackground}";
-      text-color = "#${colorText}";
-      border-color = "#${colorBorder}";
-      progress-color = "#${colorProgress}";
       width = 420;
       height = 110;
       padding = "10";
