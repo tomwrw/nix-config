@@ -4,7 +4,7 @@
   inputs,
   ...
 }: let
-  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 in {
   # Allow spotify to be installed as I don't have unfree enabled.
   nixpkgs.config.allowUnfreePredicate = pkg:

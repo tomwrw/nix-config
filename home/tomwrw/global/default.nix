@@ -27,33 +27,13 @@
     # Include any custom Home Manager modules I have defined.
     ++ (builtins.attrValues outputs.homeManagerModules);
 
-  nix = {
-    package = lib.mkDefault pkgs.nix;
-    settings = {
-      extra-substituters = [
-        "https://chaotic-nyx.cachix.org/"
-        "https://cosmic.cachix.org/"
-        "https://niri.cachix.org/"
-      ];
-      extra-trusted-public-keys = [
-        "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
-        "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
-        "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
-      ];
-      experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-      warn-dirty = false;
-    };
-  };
+  # Nix configuration (nix.*) is managed at the system level in hosts/common/core/nix.nix
+  # Home Manager inherits these settings from NixOS, so no duplication needed here.
 
-  # Allow unfree packages (such as Steam).
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-    };
-  };
+  # Note: nixpkgs.config needs to be set in Home Manager even when used as a NixOS module
+  # because Home Manager evaluates packages separately. The system-level setting doesn't
+  # automatically propagate to Home Manager's package evaluation.
+  nixpkgs.config.allowUnfree = true;
 
   # This setting ensures that user-level systemd services are started correctly
   # when using Home Manager with NixOS. It's a required boilerplate for

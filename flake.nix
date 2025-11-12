@@ -27,9 +27,9 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
     # Common hardware definitions for NixOS.
     hardware.url = "github:nixos/nixos-hardware";
-    # A list of available Nix systems, such as x86_64-linux
-    # and aarch64-linux.
-    systems.url = "github:nix-systems/default-linux";
+    # A list of available Nix systems, including Linux and Darwin.
+    # Supports: x86_64-linux, aarch64-linux, x86_64-darwin, aarch64-darwin
+    systems.url = "github:nix-systems/default";
     # Manages impermanent file system configurations.
     impermanence.url = "github:nix-community/impermanence/home-manager-v2";
     # Home Manager is used to manage user-specific configurations
@@ -48,7 +48,7 @@
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     # A Nix module for declarative disk partitioning.
     disko = {
-      url = "github:nix-community/disko/latest";
+      url = "github:nix-community/disko/v1.11.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # Provides Firefox extensions as Nix packages.
@@ -57,14 +57,20 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # A Nix flake for customising the Spotify client with Spicetify.
-    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # Input for niri the window manager.
     niri = {
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # Theme engine stylix for custom colours and themeing.
-    stylix.url = "github:nix-community/stylix";
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # Neovim flake for NixOS.
     nixvim = {
       url = "github:nix-community/nixvim";
@@ -85,19 +91,18 @@
     # Combine the Nixpkgs and Home Manager libraries for
     # unified function access.
     lib = nixpkgs.lib // home-manager.lib;
+    # Import the list of supported systems from the systems input.
+    # Includes: x86_64-linux, aarch64-linux, x86_64-darwin, aarch64-darwin
+    allSystems = import systems;
+    # A set of Nixpkgs packages for each supported system.
+    # Uses the systems input for explicit cross-platform support.
+    # Note: allowUnfree config is set at the NixOS module level in hosts/common/core/nix.nix
+    pkgsFor = lib.genAttrs allSystems (system:
+      nixpkgs.legacyPackages.${system}
+    );
     # A helper function to apply a function across all
     # supported systems.
-    forEachSystem = f: lib.mapAttrs (name: pkgs: f pkgs) pkgsFor;
-    # A set of Nixpkgs packages for each supported system,
-    # with unfree packages enabled.
-    pkgsFor =
-      lib.mapAttrs (
-        name: pkgs:
-          pkgs.override {
-            config.allowUnfree = true;
-          }
-      )
-      nixpkgs.legacyPackages;
+    forEachSystem = f: lib.genAttrs allSystems (system: f pkgsFor.${system});
   in {
     inherit lib;
     # Expose custom NixOS modules for the configuration.
