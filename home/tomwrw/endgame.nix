@@ -26,7 +26,7 @@
     ./features/productivity/firefox.nix
     ./features/productivity/obsidian.nix
     # Import my desktop/window manager/compositor.
-    ./features/wm/cosmic/cosmic.nix
+    ./features/wm/niri/niri.nix
   ];
 
   # Set up theming for this user on this host using stylix.
