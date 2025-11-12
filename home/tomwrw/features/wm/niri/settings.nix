@@ -20,6 +20,7 @@
         QT_QPA_PLATFORM = "wayland;xcb";
         QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
         SDL_VIDEODRIVER = "wayland";
+        SSH_AUTH_SOCK = "/run/user/1000/keyring/ssh";
       };
       input = {
         keyboard.xkb.layout = "gb";
