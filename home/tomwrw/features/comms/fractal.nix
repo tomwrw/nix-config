@@ -5,12 +5,13 @@
   ...
 }: {
   home.packages = with pkgs; [
-    element-desktop
+    fractal
   ];
 
   home.persistence."/persist" = {
     directories = [
-      #".config/@filen"
+      ".config/fractal"
+      ".local/share/fractal/"
     ];
     files = [
     ];

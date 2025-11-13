@@ -12,7 +12,7 @@
     # the cli subfolder..
     ./global
     # Import my features for the user on this host.
-    ./features/comms/element-desktop.nix
+    ./features/comms/fractal.nix
     ./features/comms/signal-desktop.nix
     ./features/comms/vesktop.nix
     ./features/development/code-cursor.nix

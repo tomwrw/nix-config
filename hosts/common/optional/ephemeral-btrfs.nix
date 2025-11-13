@@ -17,7 +17,6 @@
     rm -rf /mnt/root/root && mkdir /mnt/root/root
     umount /mnt
   '';
-  phase1Systemd = config.boot.initrd.systemd.enable;
 in {
   boot.initrd = {
     enable = true;

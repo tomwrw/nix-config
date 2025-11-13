@@ -5,9 +5,9 @@
 }: {
   imports =
     [
-      inputs.home-manager.nixosModules.home-manager
       ./gnupg.nix
       ./hardware.nix
+      ./home-manager.nix
       ./locale.nix
       ./network.nix
       ./nix.nix
@@ -19,11 +19,4 @@
       ./zsh.nix
     ]
     ++ (builtins.attrValues outputs.nixosModules);
-
-  # Home-manager config.
-  home-manager.useUserPackages = true;
-  home-manager.backupFileExtension = "backup";
-  home-manager.extraSpecialArgs = {
-    inherit inputs outputs;
-  };
 }

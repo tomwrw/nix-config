@@ -1,27 +1,25 @@
 {
-  config,
-  inputs,
   lib,
   outputs,
   pkgs,
   ...
 }: {
-  # Apps installed on all hosts go here.
+  # Packages installed on all hosts go here.
   environment.systemPackages = with pkgs; [
-    alejandra # A code formatter for nix.
-    easyeffects # Pipewire equalizer.
-    fd # Fast alternative to 'find'.
-    fzf # Command-line fuzzy finder.
+    alejandra
+    easyeffects
+    fd
+    fzf
     gnome-keyring
-    jq # Command-line JSON processor.
-    just # A command runner for project-specific commands.
-    pciutils # PCI utilities for device inspection.
-    ripgrep # Fast alternative to grep.
-    sbctl # Secure Boot utils.
+    jq
+    just
+    pciutils
+    ripgrep
+    sbctl
     seahorse
-    unzip # Zip file extraction utility.
+    unzip
   ];
-
+  # Fonts installed on all hosts go here.
   fonts.packages = with pkgs;
     [
       dejavu_fonts

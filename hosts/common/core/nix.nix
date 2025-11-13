@@ -1,30 +1,22 @@
-# This file (and the global directory) holds config that i use on all hosts
 {
-  config,
   inputs,
   lib,
   outputs,
-  pkgs,
   ...
 }: {
-  imports =
-    [
-    ]
-    ++ (builtins.attrValues outputs.nixosModules);
-
-  # Nixpkgs config.
+  # Nixpkgs config for all my hosts.
   nixpkgs = {
     overlays = builtins.attrValues outputs.overlays;
     config = {
       allowUnfree = true;
     };
   };
-
+  # General nix config for all my hosts.
   nix = {
     # This will add each flake input as a registry
     # To make nix3 commands consistent with your flake
     registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
-
+    # Add custom caches here.
     settings = {
       extra-substituters = [
         "https://chaotic-nyx.cachix.org/"
@@ -36,18 +28,20 @@
         "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
         "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
       ];
-      # See https://jackson.dev/post/nix-reasonable-defaults/
+      # See https://jackson.dev/post/nix-reasonable-defaults/ for
+      # explaination of sensible defaults.
       connect-timeout = 5;
       log-lines = 25;
-      min-free = 128000000; # 128MB
-      max-free = 1000000000; # 1GB
-
+      min-free = 128000000;
+      max-free = 1000000000;
+      # Add the root user and wheel group as trusted.
       trusted-users = [
         "root"
         "@wheel"
       ];
-      # Deduplicate and optimize nix store
+      # Deduplicate and optimise nix store.
       auto-optimise-store = true;
+      # Stop telling me there are uncommited changes!
       warn-dirty = false;
       # Allow importing derivations from derivations.
       allow-import-from-derivation = true;
@@ -57,6 +51,8 @@
         "flakes"
       ];
     };
+    # Garbage collection settings to automate the process
+    # of cleaning stale generations and store items.
     gc = {
       automatic = true;
       dates = "weekly";
@@ -65,7 +61,6 @@
       options = "--delete-older-than 30d";
     };
   };
-
   # nix-ld provides a shim for ELF binaries to automatically find their
   # shared library dependencies in the Nix store. This is essential for
   # running pre-compiled binaries that are not packaged in Nixpkgs.

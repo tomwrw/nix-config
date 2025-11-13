@@ -1,12 +1,5 @@
-# This file (and the global directory) holds config that i use on all hosts
 {
-  config,
-  inputs,
-  lib,
-  outputs,
-  pkgs,
-  ...
-}: {
+  # Enable rtkit and polkit for all hosts.
   security = {
     rtkit.enable = true;
     polkit.enable = true;
@@ -27,13 +20,13 @@
       }
     ];
   };
-
-  # The default open file limit is often too low for modern applications,
-  # especially for development, gaming, and other intensive tasks. Increasing
-  # this limit prevents "too many open files" errors.
+  # Enable PAM security settings for all hosts.
   security.pam = {
     # Enable the logon unlock of GNOME keyring.
     services.login.enableGnomeKeyring = true;
+    # The default open file limit is often too low for modern applications,
+    # especially for development, gaming, and other intensive tasks. Increasing
+    # this limit prevents "too many open files" errors.
     loginLimits = [
       {
         domain = "@wheel";
