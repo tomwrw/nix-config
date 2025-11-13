@@ -43,7 +43,7 @@
     # Import my user configs.
     ../../common/users/tomwrw
     # Import my desktop.
-    ../../common/optional/cosmic.nix
+    ../../common/optional/wm/cosmic/cosmic.nix
   ];
 
   # Boot loader settings are usually unique to my hosts

@@ -2,22 +2,6 @@
   # For those who come after...
   description = "nix-config - a NixOS and Home Manager configuration by tomwrw.";
 
-  # Configure Nix to use additional binary caches and their public keys.
-  # This speeds up builds by allowing Nix to download pre-built packages
-  # from these caches.
-  nixConfig = {
-    extra-substituters = [
-      "https://chaotic-nyx.cachix.org/"
-      "https://cosmic.cachix.org/"
-      "https://niri.cachix.org/"
-    ];
-    extra-trusted-public-keys = [
-      "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
-      "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
-      "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
-    ];
-  };
-
   # Define all the flake inputs (dependencies) for the configuration.
   inputs = {
     # Nixpkgs is the primary source of packages. It is set to the
@@ -97,8 +81,9 @@
     # A set of Nixpkgs packages for each supported system.
     # Uses the systems input for explicit cross-platform support.
     # Note: allowUnfree config is set at the NixOS module level in hosts/common/core/nix.nix
-    pkgsFor = lib.genAttrs allSystems (system:
-      nixpkgs.legacyPackages.${system}
+    pkgsFor = lib.genAttrs allSystems (
+      system:
+        nixpkgs.legacyPackages.${system}
     );
     # A helper function to apply a function across all
     # supported systems.
