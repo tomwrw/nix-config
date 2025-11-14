@@ -1,8 +1,4 @@
-{
-  inputs,
-  outputs,
-  ...
-}: {
+{outputs, ...}: {
   imports =
     [
       ./gnupg.nix
@@ -18,5 +14,6 @@
       ./systemd-initrd.nix
       ./zsh.nix
     ]
+    # Include any custom NixOS modules I have defined.
     ++ (builtins.attrValues outputs.nixosModules);
 }

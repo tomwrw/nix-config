@@ -3,13 +3,11 @@
     git = {
       enable = true;
       lfs.enable = true;
-
       ignores = [
         "result"
         "*.swp"
         "*.qcow2"
       ];
-
       settings = {
         alias = {
           s = "status";
@@ -19,12 +17,10 @@
           p = "push";
           co = "checkout";
         };
-
         user = {
           email = "tomwrw@proton.me";
           name = "tomwrw";
         };
-
         init.defaultBranch = "main";
         pull.rebase = false;
         commit.gpgsign = true;

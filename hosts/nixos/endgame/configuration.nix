@@ -1,15 +1,9 @@
-{
-  inputs,
-  outputs,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   # Set the host-specific hostname here.
   networking = {
     hostName = "endgame";
     domain = "home.arpa";
   };
-
   # Set the hosts system state version.
   # This is the NixOS release from which the default settings for stateful
   # data (like database locations and file system formats) were taken.
@@ -18,7 +12,6 @@
   # Only update this when you want to adopt new defaults or upgrade major versions.
   # Current installed version: 25.11 (Xantusia) - verified via `nixos-version`
   system.stateVersion = "25.05";
-
   # Import needed modules here. This is going to pull in my hardware-configuration,
   # global configs (stuff shared between all hosts), optional configs, and
   # my user configs for any users I want added to this host.
@@ -46,7 +39,6 @@
     # Import my desktop.
     ../../common/optional/wm/cosmic/cosmic.nix
   ];
-
   # Boot loader settings are usually unique to my hosts
   # since some systems will dual boot with Windows. For
   # that reason, I keep the boot loader settings in the
@@ -79,7 +71,6 @@
     };
     kernelParams = [];
   };
-
   # Host specific apps go here. These will only be
   # installed on this host.
   environment.systemPackages = with pkgs; [

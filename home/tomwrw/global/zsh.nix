@@ -4,7 +4,6 @@
     enableBashIntegration = true;
     enableZshIntegration = true;
   };
-
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;
@@ -27,7 +26,6 @@
       size = 8000;
     };
   };
-
   programs.starship = {
     enable = true;
     enableBashIntegration = true;

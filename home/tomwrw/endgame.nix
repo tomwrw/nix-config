@@ -1,34 +1,25 @@
-{
-  inputs,
-  lib,
-  pkgs,
-  config,
-  outputs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     # Import my global Home Manager configs. These are configs
-    # I apply to all my Home Manager users and all sit within
-    # the cli subfolder..
+    # I apply to all my Home Manager users.
     ./global
     # Import my features for the user on this host.
-    ./features/comms/fractal.nix
-    ./features/comms/signal-desktop.nix
-    ./features/comms/vesktop.nix
-    ./features/development/code-cursor.nix
-    ./features/development/hugo.nix
-    ./features/development/terraform.nix
-    ./features/development/vscodium.nix
-    ./features/media/digikam.nix
-    ./features/media/spicetify.nix
-    ./features/productivity/bitwarden.nix
-    ./features/productivity/ente.nix
-    ./features/productivity/firefox.nix
-    ./features/productivity/obsidian.nix
+    ./features/bitwarden.nix
+    ./features/code-cursor.nix
+    ./features/digikam.nix
+    ./features/ente.nix
+    ./features/firefox.nix
+    ./features/fractal.nix
+    ./features/hugo.nix
+    ./features/obsidian.nix
+    ./features/signal-desktop.nix
+    ./features/spicetify.nix
+    ./features/terraform.nix
+    ./features/vesktop.nix
+    ./features/vscodium.nix
     # Import my desktop/window manager/compositor.
     ./features/wm/cosmic/cosmic.nix
   ];
-
   # Set up theming for this user on this host using stylix.
   # This is important as I refer to stylix lib and colors
   # throughout many modules within this configuration.
@@ -44,16 +35,14 @@
         firefoxGnomeTheme.enable = true;
         profileNames = ["default"];
       };
-      mako.enable = false;
-      waybar.enable = false;
     };
     # Set my cursor preferences.
     cursor = {
       package = pkgs.bibata-cursors;
       name = "Bibata-Modern-Classic";
-      size = 16;
+      size = 20;
     };
-    # Set my theme preferences for the user on this host.
+    # Set my font preferences for the user on this host.
     fonts = {
       emoji = {
         package = pkgs.noto-fonts-color-emoji;
@@ -73,27 +62,4 @@
       };
     };
   };
-
-  # Use my custom theme module to supply additional
-  # theme options that are not currently covered
-  # within stylix.
-  theme = {
-    borderWidth = 2.0;
-    borderRadius = 0.0;
-  };
-
-  # Set up the monitos for this host.
-  monitors = [
-    {
-      name = "HDMI-A-2";
-      width = 2560;
-      height = 1440;
-      refresh = 144.006;
-      scale = 1.0;
-      posx = 0;
-      posy = 0;
-      workspace = "1";
-      primary = true;
-    }
-  ];
 }

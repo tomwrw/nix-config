@@ -1,24 +1,66 @@
-{
-  inputs,
-  lib,
-  pkgs,
-  config,
-  outputs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     # Import my global Home Manager configs. These are configs
-    # I apply to all my Home Manager users and all sit within
-    # the cli subfolder..
+    # I apply to all my Home Manager users.
     ./global
-    # Import my features for the user on this host. This can
-    # either be the folder itself (all contents imported via
-    # the included default.nix) or individual nix files wihin
-    # each feature subfolder if I want to be selective.
-    ./features/comms
-    ./features/development/vscodium.nix
-    ./features/productivity
+    # Import my features for the user on this host.
+    ./features/bitwarden.nix
+    ./features/code-cursor.nix
+    ./features/digikam.nix
+    ./features/ente.nix
+    ./features/firefox.nix
+    ./features/fractal.nix
+    ./features/hugo.nix
+    ./features/obsidian.nix
+    ./features/signal-desktop.nix
+    ./features/spicetify.nix
+    ./features/terraform.nix
+    ./features/vesktop.nix
+    ./features/vscodium.nix
     # Import my desktop/window manager/compositor.
-    ./features/desktop/cosmic
+    ./features/wm/cosmic/cosmic.nix
   ];
+
+  # Set up theming for this user on this host using stylix.
+  # This is important as I refer to stylix lib and colors
+  # throughout many modules within this configuration.
+  stylix = {
+    # Set up the initial stylix config.
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/everforest.yaml";
+    image = ../../assets/wallpaper/hanged-man-tree.png;
+    polarity = "dark";
+    # Set up firefox target and disable any targets that
+    # use custom coloring in the module itself.
+    targets = {
+      firefox = {
+        firefoxGnomeTheme.enable = true;
+        profileNames = ["default"];
+      };
+    };
+    # Set my cursor preferences.
+    cursor = {
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Classic";
+      size = 20;
+    };
+    # Set my font preferences for the user on this host.
+    fonts = {
+      emoji = {
+        package = pkgs.noto-fonts-color-emoji;
+        name = "Noto Color Emoji";
+      };
+      monospace = {
+        package = pkgs.nerd-fonts.dejavu-sans-mono;
+        name = "CaskaydiaMono Nerd Font";
+      };
+      sansSerif = {
+        package = pkgs.source-han-sans;
+        name = "Source Han Sans SC";
+      };
+      serif = {
+        package = pkgs.source-han-serif;
+        name = "Source Han Serif SC";
+      };
+    };
+  };
 }

@@ -1,15 +1,9 @@
-{
-  inputs,
-  outputs,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   # Set the host-specific hostname here.
   networking = {
     hostName = "spectre";
     domain = "home.arpa";
   };
-
   # Set the hosts system state version.
   # This is the NixOS release from which the default settings for stateful
   # data (like database locations and file system formats) were taken.
@@ -17,7 +11,6 @@
   # with stateVersion "25.05" if you want to keep the old defaults.
   # Only update this when you want to adopt new defaults or upgrade major versions.
   system.stateVersion = "25.05";
-
   # Import needed modules here. This is going to pull in my hardware-configuration,
   # global configs (stuff shared between all hosts), optional configs, and
   # my user configs for any users I want added to this host.
@@ -42,7 +35,6 @@
     # Import my desktop.
     ../../common/optional/wm/cosmic/cosmic.nix
   ];
-
   # Boot loader settings are usually unique to my hosts
   # since some systems will dual boot with Windows. For
   # that reason, I keep the boot loader settings in the

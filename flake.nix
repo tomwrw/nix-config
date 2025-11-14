@@ -1,7 +1,6 @@
 {
   # For those who come after...
   description = "nix-config - a NixOS and Home Manager configuration by tomwrw.";
-
   # Define all the flake inputs (dependencies) for the configuration.
   inputs = {
     # Nixpkgs is the primary source of packages. It is set to the
@@ -45,23 +44,12 @@
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # Input for niri the window manager.
-    niri = {
-      url = "github:sodiboo/niri-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     # Theme engine stylix for custom colours and themeing.
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # Neovim flake for NixOS.
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
-
   outputs = {
     self,
     nixpkgs,
@@ -76,36 +64,31 @@
     # unified function access.
     lib = nixpkgs.lib // home-manager.lib;
     # Import the list of supported systems from the systems input.
-    # Includes: x86_64-linux, aarch64-linux, x86_64-darwin, aarch64-darwin
+    # Includes: x86_64-linux, aarch64-linux, x86_64-darwin, aarch64-darwin.
     allSystems = import systems;
     # A set of Nixpkgs packages for each supported system.
     # Uses the systems input for explicit cross-platform support.
-    # Note: allowUnfree config is set at the NixOS module level in hosts/common/core/nix.nix
     pkgsFor = lib.genAttrs allSystems (
       system:
         nixpkgs.legacyPackages.${system}
     );
-    # A helper function to apply a function across all
-    # supported systems.
+    # A helper function to apply a function across all supported systems.
     forEachSystem = f: lib.genAttrs allSystems (system: f pkgsFor.${system});
   in {
     inherit lib;
     # Expose custom NixOS modules for the configuration.
     nixosModules = import ./modules/nixos;
-    # Expose custom Home Manager modules for user
-    # configurations.
+    # Expose custom Home Manager modules for user configurations.
     homeManagerModules = import ./modules/home-manager;
     # Expose custom packages as overlays.
     overlays = import ./overlays {inherit inputs outputs;};
-    # Build custom packages from the local
-    # `pkgs` directory.
+    # Build custom packages from the local pkgs directory.
     packages = forEachSystem (pkgs: import ./pkgs {inherit pkgs;});
-    # Specify the Nix file formatter to be used
-    # by `nix fmt`.
+    # Specify the Nix file formatter to be used by nix fmt.
     formatter = forEachSystem (pkgs: pkgs.alejandra);
     # Define a development shell with specific tools
-    # for working on the flake, such as `alejandra`
-    # for formatting and `git` for version control.
+    # for working on the flake, such as alejandra
+    # for formatting and git for version control.
     devShells = forEachSystem (pkgs: {
       default = pkgs.mkShell {
         packages = [
