@@ -11,15 +11,9 @@
   # generated at installation time. So we force it to false
   # for now.
   boot.loader.systemd-boot.enable = lib.mkForce false;
-
+  # Enable lanzaboote.
   boot.lanzaboote = {
     enable = true;
     pkiBundle = "/var/lib/sbctl";
-  };
-
-  environment.persistence."/persist" = {
-    directories = [
-      "/var/lib/sbctl"
-    ];
   };
 }

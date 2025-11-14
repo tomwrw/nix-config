@@ -38,6 +38,6 @@ in {
       "kvm"
     ];
   };
-
+  # Import the Home Manager config for this user on this host.
   home-manager.users.${username} = import ../../../../home/${username}/${hostname}.nix;
 }

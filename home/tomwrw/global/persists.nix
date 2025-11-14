@@ -5,7 +5,7 @@
     inputs.impermanence.homeManagerModules.impermanence
   ];
   # Global persists for anything that could be global
-  # or optional for nixos configs, like Steam.
+  # or optional for Home Manager configs, like Steam.
   home.persistence."/persist" = {
     hideMounts = true;
     directories = [

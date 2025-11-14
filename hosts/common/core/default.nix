@@ -8,7 +8,7 @@
       ./network.nix
       ./nix.nix
       ./packages.nix
-      ./persistence.nix
+      ./persists.nix
       ./security.nix
       ./ssh.nix
       ./systemd-initrd.nix
