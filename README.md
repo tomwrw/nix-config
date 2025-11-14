@@ -5,7 +5,7 @@
 
 # Introduction.
 
-My modular, flake-based repo for managing my systems using Nix and NixOS, flakes and Home Manager (as a NixOS module). I publish megadots to help others, as I found Github and other peoples repos (some shoutouts below!) extremely helpful to learn Nix/NixOS. Hopefully I can return the favour by publishing my own, for those who come after.
+My modular, flake-based repo for managing my systems using Nix and NixOS, flakes and Home Manager (as a NixOS module). I publish my nix-config to help others, as I found Github and other peoples repos (some shoutouts below!) extremely helpful to learn Nix/NixOS. Hopefully I can return the favour by publishing my own, for those who come after.
 
 > **Note:** Though I use this repo for my own config, I also dabble and break things from time to time. I tend to keep working code in the `main` branch. Any other branch, assume it is a work in progress and not suitable for use. Also note that as this is my primary personal config, my `hardware-configuration.nix` files and attributes like `hostname`, `hashedPassword` and `username` will be unique to me, so you'll have to bring your own.
 
@@ -135,7 +135,7 @@ I use the following structure to organise my configurations.
 │   │   ├── core          # Global system configs, to apply on every system.
 │   │   ├── optional      # Optional system configs, selectively imported per host.
 │   │   └── users         # Optional user settings to apply on selected systems with options.
-│   └── nixos             # NixOS hosts managed by megadots.
+│   └── nixos             # NixOS hosts managed by this repo.
 │       └── endgame       # The configuration for my primary desktop system.
 │       └── flatmate      # The configuration for my mobile device, a Surface Pro 7.
 │       └── spectre       # The configuration for my test VM.
