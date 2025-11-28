@@ -1,6 +1,6 @@
 <p align="center">
-  <a href="https://nixos.org/"><img src="https://img.shields.io/badge/NixOS-25.05-blue?style=for-the-badge&logo=NixOS" alt="NixOS"></a>
-  <a href="https://github.com/nix-community/home-manager"><img src="https://img.shields.io/badge/Home--Manager-25.05-blue?style=for-the-badge&logo=Home-Assistant" alt="Home Manager"></a>
+  <a href="https://nixos.org/"><img src="https://img.shields.io/badge/NixOS-25.11-blue?style=for-the-badge&logo=NixOS" alt="NixOS"></a>
+  <a href="https://github.com/nix-community/home-manager"><img src="https://img.shields.io/badge/Home--Manager-25.11-blue?style=for-the-badge&logo=Home-Assistant" alt="Home Manager"></a>
 </p>
 
 # Introduction.

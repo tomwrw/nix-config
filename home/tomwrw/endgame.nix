@@ -5,7 +5,7 @@
 }: {
   imports = [
     # Import my global Home Manager configs. These are configs
-    # I apply to all my Home Manager users.
+    # I apply to all my Home Manager hosts for this user.
     ./global
     # Import my features for the user on this host.
     ./features/bitwarden.nix

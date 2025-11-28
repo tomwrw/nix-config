@@ -5,12 +5,14 @@
     domain = "home.arpa";
   };
   # Set the hosts system state version.
-  # This is the NixOS release from which the default settings for stateful
-  # data (like database locations and file system formats) were taken.
-  # It's NOT the same as the installed NixOS version - you can run NixOS 25.11
-  # with stateVersion "25.05" if you want to keep the old defaults.
-  # Only update this when you want to adopt new defaults or upgrade major versions.
-  system.stateVersion = "25.05";
+  # This is the NixOS release from which the default settings for
+  # stateful data (like database locations and file system formats)
+  # are taken. It's NOT the same as the installed NixOS version...
+  # you can run NixOS 25.11 with stateVersion "25.05" if you want
+  # to keep the old defaults. Only update this when you want to
+  # adopt new defaults or upgrade major versions. You can verify
+  # installed NixOS version with nixos-version.
+  system.stateVersion = "25.11";
   # Import needed modules here. This is going to pull in my hardware-configuration,
   # global configs (stuff shared between all hosts), optional configs, and
   # my user configs for any users I want added to this host.
