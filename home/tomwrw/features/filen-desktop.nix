@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    signal-desktop
+    filen-desktop
   ];
   # This app requires the following persisted directories
   # and folders. Be This will only apply if impermanence is
@@ -10,7 +10,7 @@
   home.persistence."/persist" = {
     directories = [
       # Persisted directories go here (if needed).
-      ".config/Signal"
+      ".config/@filen"
     ];
     files = [
       # Persisted files go here (if needed).

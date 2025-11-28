@@ -10,8 +10,10 @@
     # Import my features for the user on this host.
     ./features/bitwarden.nix
     ./features/code-cursor.nix
+    ./features/cryptomator.nix
     ./features/digikam.nix
     ./features/ente.nix
+    ./features/filen-desktop.nix
     ./features/firefox.nix
     ./features/hugo.nix
     ./features/joplin.nix
@@ -21,6 +23,7 @@
     ./features/terraform.nix
     ./features/vesktop.nix
     ./features/vscodium.nix
+    ./features/whatsapp.nix
     # Import my desktop/window manager/compositor.
     ./features/wm/cosmic/cosmic.nix
   ];

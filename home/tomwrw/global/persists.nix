@@ -14,6 +14,7 @@
       "Downloads"
       "Music"
       "Pictures"
+      "Vault"
       "Videos"
       ".openvpn"
       ".password-store"

@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    signal-desktop
+    cryptomator
   ];
   # This app requires the following persisted directories
   # and folders. Be This will only apply if impermanence is
@@ -10,7 +10,9 @@
   home.persistence."/persist" = {
     directories = [
       # Persisted directories go here (if needed).
-      ".config/Signal"
+      ".config/Cryptomator"
+      ".local/share/Cryptomator"
+      ".local/share/Cryptomator/mnt/Vault/"
     ];
     files = [
       # Persisted files go here (if needed).
