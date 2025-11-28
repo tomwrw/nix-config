@@ -4,10 +4,11 @@
   # Define all the flake inputs (dependencies) for the configuration.
   inputs = {
     # Nixpkgs is the primary source of packages. It is set to the
-    # unstable channel by default.
+    # unstable channel by default. https://nixpkgs-tracker.ocfox.me
+    # can be used to check PR status for packages.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     # A stable version of Nixpkgs for specific packages.
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     # Common hardware definitions for NixOS.
     hardware.url = "github:nixos/nixos-hardware";
     # A list of available Nix systems, including Linux and Darwin.
@@ -40,10 +41,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # A Nix flake for customising the Spotify client with Spicetify.
-    spicetify-nix = {
-      url = "github:Gerg-L/spicetify-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     # Theme engine stylix for custom colours and themeing.
     stylix = {
       url = "github:nix-community/stylix";

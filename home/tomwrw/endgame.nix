@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [
     # Import my global Home Manager configs. These are configs
     # I apply to all my Home Manager users.
@@ -9,8 +13,8 @@
     ./features/digikam.nix
     ./features/ente.nix
     ./features/firefox.nix
-    ./features/fractal.nix
     ./features/hugo.nix
+    ./features/joplin.nix
     ./features/obsidian.nix
     ./features/signal-desktop.nix
     ./features/spicetify.nix
@@ -20,6 +24,10 @@
     # Import my desktop/window manager/compositor.
     ./features/wm/cosmic/cosmic.nix
   ];
+  # Set up my Home Manager instance.
+  home = {
+    stateVersion = lib.mkDefault "25.11";
+  };
   # Set up theming for this user on this host using stylix.
   # This is important as I refer to stylix lib and colors
   # throughout many modules within this configuration.

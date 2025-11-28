@@ -11,7 +11,7 @@
   # with stateVersion "25.05" if you want to keep the old defaults.
   # Only update this when you want to adopt new defaults or upgrade major versions.
   # Current installed version: 25.11 (Xantusia) - verified via `nixos-version`
-  system.stateVersion = "25.05";
+  system.stateVersion = "25.11";
   # Import needed modules here. This is going to pull in my hardware-configuration,
   # global configs (stuff shared between all hosts), optional configs, and
   # my user configs for any users I want added to this host.

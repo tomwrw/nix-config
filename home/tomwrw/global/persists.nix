@@ -22,6 +22,7 @@
       ".config/dconf"
       ".config/openrazer"
       ".config/polychromatic"
+      ".config/sops"
       ".local/share/nix"
       ".local/state"
       ".local/share/Steam"

@@ -1,17 +1,13 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   home.packages = with pkgs; [
-    fractal
+    joplin
+    joplin-desktop
   ];
 
   home.persistence."/persist" = {
     directories = [
-      ".config/fractal"
-      ".local/share/fractal/"
+      ".config/Joplin"
+      ".config/joplin-desktop"
     ];
     files = [
     ];

@@ -21,7 +21,7 @@
     # TODO: Adjust username here accordingly.
     username = lib.mkDefault "tomwrw";
     homeDirectory = lib.mkDefault "/home/${config.home.username}";
-    stateVersion = lib.mkDefault "25.05";
+    #stateVersion = lib.mkDefault "25.05";
     sessionPath = ["$HOME/.local/bin"];
     sessionVariables = {
       NH_FLAKE = "$HOME/Development/nix-config";
