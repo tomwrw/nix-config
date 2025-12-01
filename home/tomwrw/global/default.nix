@@ -1,8 +1,10 @@
 {outputs, ...}: {
   imports =
     [
-      ./alacritty.nix
+      # Removed alacritty in favour of ghostty.
+      #./alacritty.nix
       ./btop.nix
+      ./ghostty.nix
       ./git.nix
       ./home-manager.nix
       ./neovim.nix

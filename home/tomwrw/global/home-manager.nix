@@ -25,6 +25,9 @@
     sessionPath = ["$HOME/.local/bin"];
     sessionVariables = {
       NH_FLAKE = "$HOME/Development/nix-config";
+      EDITOR = "nvim";
+      BROWSER = "firefox";
+      TERMINAL = "ghostty";
     };
   };
 }
