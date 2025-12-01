@@ -3,7 +3,7 @@
     enable = true;
     settings = {
       window = {
-        decorations = "none";
+        # decorations = "none";
         dimensions = {
           columns = 70;
           lines = 17;

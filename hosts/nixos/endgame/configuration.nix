@@ -38,7 +38,7 @@
     # Import my user configs.
     ../../common/users/tomwrw
     # Import my desktop.
-    ../../common/optional/wm/cosmic/cosmic.nix
+    ../../common/optional/wm/gnome/gnome.nix
   ];
   # Boot loader settings are usually unique to my hosts
   # since some systems will dual boot with Windows. For

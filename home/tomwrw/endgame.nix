@@ -25,7 +25,7 @@
     ./features/vscodium.nix
     ./features/whatsapp.nix
     # Import my desktop/window manager/compositor.
-    ./features/wm/cosmic/cosmic.nix
+    ./features/wm/gnome/gnome.nix
   ];
   # Set up my Home Manager instance.
   home = {

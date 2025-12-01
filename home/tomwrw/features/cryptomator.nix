@@ -12,7 +12,7 @@
       # Persisted directories go here (if needed).
       ".config/Cryptomator"
       ".local/share/Cryptomator"
-      ".local/share/Cryptomator/mnt/Vault/"
+      #".local/share/Cryptomator/mnt/Vault/"
     ];
     files = [
       # Persisted files go here (if needed).
