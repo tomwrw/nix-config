@@ -9,3 +9,9 @@ endgame-deploy:
 
 endgame-rebuild:
     nixos-rebuild switch --flake .#endgame --target-host tomwrw@endgame --sudo
+
+flatmate-deploy:
+    nix --extra-experimental-features 'nix-command flakes' run github:nix-community/nixos-anywhere -- --disko-mode disko --flake .#flatmate --target-host nixos@flatmate
+
+flatmate-rebuild:
+    nixos-rebuild switch --flake .#flatmate --target-host tomwrw@flatmate --sudo

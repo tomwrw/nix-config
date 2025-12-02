@@ -1,4 +1,4 @@
-# Disk configuration file for disko for the host 'quiet'.
+# Disk configuration file for disko for the host 'flatmate'.
 # There are some specific configurations in this disko
 # file that are needed for my impermanence setup to work.
 # The primary btrfs volume needs to be labelled 'nixos'
@@ -12,7 +12,6 @@
   ...
 }: let
   diskId = "/dev/disk/by-id/nvme-KBG40ZPZ512G_TOSHIBA_MEMORY_89R201INNLAP";
-  hostname = config.networking.hostName;
 in {
   imports = [
     inputs.disko.nixosModules.disko
@@ -53,9 +52,9 @@ in {
                 };
                 content = {
                   type = "btrfs";
-                  extraArgs = ["-L" "${hostname}" "-f"];
+                  extraArgs = ["-L" "nixos" "-f"];
                   postCreateHook = ''
-                    mount -t btrfs /dev/disk/by-label/${hostname} /mnt
+                    mount -t btrfs /dev/disk/by-label/nixos /mnt
                     btrfs subvolume snapshot -r /mnt /mnt/root-blank
                     umount /mnt
                   '';

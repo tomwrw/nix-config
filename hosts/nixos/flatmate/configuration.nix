@@ -30,15 +30,13 @@
     ../../common/optional/bluetooth.nix
     ../../common/optional/cachyos.nix
     ../../common/optional/ephemeral-btrfs.nix
-    ../../common/optional/gaming.nix
     ../../common/optional/graphics.nix
-    ../../common/optional/lanzaboote.nix
     ../../common/optional/pipewire.nix
     ../../common/optional/virt-manager.nix
     # Import my user configs.
     ../../common/users/tomwrw
     # Import my desktop.
-    ../../common/optional/wm/cosmic/cosmic.nix
+    ../../common/optional/wm/gnome/gnome.nix
   ];
   # Boot loader settings are usually unique to my hosts
   # since some systems will dual boot with Windows. For
@@ -53,6 +51,7 @@
         configurationLimit = 10;
       };
     };
+    kernelParams = [];
   };
   # Host specific apps go here. These will only be
   # installed on this host.
