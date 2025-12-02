@@ -72,6 +72,13 @@
         default_area = "navbar";
         private_browsing = true;
       };
+      "@testpilot-containers" = {
+        installation_mode = "force_installed";
+        install_url = "https://addons.mozilla.org/firefox/downloads/latest/multi-account-containers/latest.xpi";
+        updates_disabled = false;
+        default_area = "navbar";
+        private_browsing = true;
+      };
     };
     Preferences = {
       "browser.urlbar.suggest.searches" = true; # Need this for basic search suggestions
