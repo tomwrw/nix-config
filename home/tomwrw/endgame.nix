@@ -12,6 +12,7 @@
     ./features/code-cursor.nix
     ./features/cryptomator.nix
     ./features/digikam.nix
+    ./features/element-desktop.nix
     ./features/ente.nix
     ./features/filen-desktop.nix
     ./features/firefox.nix
