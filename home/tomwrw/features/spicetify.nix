@@ -11,14 +11,11 @@ in {
     builtins.elem (lib.getName pkg) [
       "spotify"
     ];
-
   # Import the flake's module for my host.
   imports = [inputs.spicetify-nix.homeManagerModules.default];
-
   # Configure spicetify.
   programs.spicetify = {
     enable = true;
-
     enabledExtensions = with spicePkgs.extensions; [
       fullAppDisplay
       shuffle

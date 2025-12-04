@@ -1,10 +1,4 @@
-{
-  inputs,
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   programs.firefox.enable = true;
 
   programs.firefox.policies = {
