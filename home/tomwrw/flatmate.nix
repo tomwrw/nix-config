@@ -11,7 +11,6 @@
     ./features/bitwarden.nix
     ./features/code-cursor.nix
     ./features/cryptomator.nix
-    ./features/digikam.nix
     ./features/ente.nix
     ./features/filen-desktop.nix
     ./features/firefox.nix
@@ -19,7 +18,7 @@
     ./features/joplin.nix
     ./features/obsidian.nix
     ./features/signal-desktop.nix
-    ./features/spicetify.nix
+    ./features/spotify.nix
     ./features/terraform.nix
     ./features/vesktop.nix
     ./features/vscodium.nix
