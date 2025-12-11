@@ -33,7 +33,7 @@ This configuration has a multiple system entry points, with Home Manager configu
 
 ### Getting Started.
 
-To deploy a configuration, you can use the `nixos-rebuild` command with the appropriate flake output. For example, to deploy the `endgame` configuration on the local machine:
+To deploy a configuration, you can use the `nixos-rebuild` command with the appropriate flake output. For example, to deploy the `endgame` configuration...
 
 ```bash
 # To build the configuration
@@ -45,29 +45,12 @@ nixos-rebuild test --flake .#endgame
 # To apply the configuration to an existing host.
 sudo nixos-rebuild switch --flake .#endgame
 
-# To deploy the configuration to a new remote host (make sure the just file has been updated to support any new or renamed hosts and has been booted to NixOS minimal livecd, and has had a password set with passwd).
-just hostname-deploy
+# To deploy the configuration for endgame from a remote machine as a bare metal deployment from the NixOS minimal livecd (make sure to set a password with with passwd).
+just endgame-deploy
 
-# To apply the configuration to an existing remote host (make sure the just file has been updated to support any new or renamed hosts).
-just hostname-rebuild
+# To rebuild endgame from a remote system.
+just endgame-rebuild
 ```
-
-To deploy to a remote machine over SSH, you can use the `--flake` and `--target-host` flags:
-
-```bash
-nixos-rebuild switch --flake .#endgame --target-host tomwrw@endgame --use-remote-sudo
-```
-
-### Customization.
-
-To adapt this configuration for your own use, you'll need to create a new host and user.
-
-1.  **Create a new host directory** in `nixos/hosts`. You can copy an existing one (e.g., `nixos/hosts/nixvm`) as a template.
-2.  **Generate a new `hardware-configuration.nix`** on the target machine with `nixos-generate-config`.
-3.  **Update your `flake.nix`** to add a new `nixosConfigurations` entry for your new host.
-4.  **Create a new user directory** in `home/` and a corresponding entry in `nixos/config/users`.
-4.  **Create a new host file** in `home/$USER` for the Home Manager config for that specific host and user.
-
 ### Updating.
 
 To update the flake inputs (e.g., `nixpkgs`), run the following command:
