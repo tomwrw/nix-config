@@ -42,8 +42,14 @@ nixos-rebuild build --flake .#endgame
 # To test the configuration
 nixos-rebuild test --flake .#endgame
 
-# To apply the configuration
+# To apply the configuration to an existing host.
 sudo nixos-rebuild switch --flake .#endgame
+
+# To deploy the configuration to a new remote host (make sure the just file has been updated to support any new or renamed hosts and has been booted to NixOS minimal livecd, and has had a password set with passwd).
+just hostname-deploy
+
+# To apply the configuration to an existing remote host (make sure the just file has been updated to support any new or renamed hosts).
+just hostname-rebuild
 ```
 
 To deploy to a remote machine over SSH, you can use the `--flake` and `--target-host` flags:
@@ -135,7 +141,7 @@ sudo sbctl status
 | flatmate | My mobile workstation | Surface Pro 7 | NixOS | Intel i7-1065G7 | Intel iGPU |
 | spectre | My test VM | QEMU VM | NixOS | Host passthrough | OpenGL/3D accelerated |
 
-I have a single user that I manage through Home Manager (tomwrw). You may add additional users or rename mine to inherit my existing settings - though don't forget to change my hashedPassword to something of your own otherwise you won't be able to log in.
+I have a single user that I manage through Home Manager (tomwrw). You may add additional users or rename mine to inherit my existing settings - though you'll need to replace the age keys in '''.sops.yaml''' to your own, and re-create the '''secrets/secrets.yaml''' file with your own paths and secrets.
 
 ### File structure.
 
