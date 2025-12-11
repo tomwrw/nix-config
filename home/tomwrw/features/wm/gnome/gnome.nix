@@ -1,0 +1,100 @@
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  home = {
+    packages = with pkgs; [
+      gnomeExtensions.appindicator
+      gnomeExtensions.user-themes
+    ];
+  };
+  dconf.settings = {
+    # Don't try to suspend while plugged in.
+    "org/gnome/settings-daemon/plugins/power" = {
+      sleep-inactive-ac-type = "nothing";
+    };
+    "org/gnome/desktop/interface" = {
+      # gtk4 theme/scheme.
+      color-scheme = "prefer-dark";
+      # accent-color = "slate";
+      show-battery-percentage = true;
+    };
+    # Enable minimise, maximise buttons.
+    "org/gnome/desktop/wm/preferences" = {
+      button-layout = ":appmenu,minimize,maximize,close";
+    };
+    # Wayland Mutter tweaks.
+    "org/gnome/mutter" = {
+      edge-tiling = true;
+      dynamic-workspaces = true;
+    };
+    "org/gnome/desktop/wm/preferences" = {
+      resize-with-right-button = true;
+    };
+    "org/gnome/desktop/interface" = {
+      enable-hot-corners = true;
+    };
+    # Touchpad support and config.
+    "org/gnome/desktop/peripherals/touchpad" = {
+      tap-to-click = true;
+      natural-scroll = true;
+    };
+    # Extension config.
+    "org/gnome/shell" = {
+      disable-user-extensions = false;
+      enabled-extensions = with pkgs.gnomeExtensions; [
+        appindicator.extensionUuid
+        user-themes.extensionUuid
+      ];
+      favorite-apps = [
+        "org.gnome.Nautilus.desktop"
+        "com.mitchellh.ghostty.desktop"
+        "firefox.desktop"
+        "codium.desktop"
+        "virt-manager.desktop"
+        "spotify.desktop"
+        "element-desktop.desktop"
+        "vesktop.desktop"
+        "com.github.xeco23.WasIstLos.desktop"
+        "signal.desktop'"
+      ];
+      last-selected-power-profile = "performance";
+    };
+    "org/gnome/desktop/applications/terminal" = {
+      exec = "ghostty";
+      exec-arg = "";
+    };
+    "org/gnome/desktop/wm/keybindings" = {
+      close = ["<Super>q"];
+    };
+    "org/gnome/settings-daemon/plugins/media-keys" = {
+      custom-keybindings = [
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+      ];
+    };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+      name = "Terminal";
+      command = "ghostty";
+      binding = "<Super>Return";
+    };
+  };
+  # This app requires the following persisted directories
+  # and folders. Be This will only apply if impermanence is
+  # enabled, and as soon as a user and host become out of
+  # scope for this module, the items here will no longer
+  # be persisted (they'll still exist in /persist thought).
+  home.persistence."/persist" = {
+    directories = [
+      # Persisted directories go here (if needed).
+      ".config/autostart"
+      ".local/share/gvfs-metadata"
+      ".local/share/gnome-shell"
+    ];
+    files = [
+      # Persisted files go here (if needed).
+      ".config/monitors.xml"
+    ];
+  };
+}
