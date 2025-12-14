@@ -9,6 +9,7 @@
     ./global
     # Import my features for the user on this host.
     ./features/bitwarden.nix
+    ./features/claude-code.nix
     ./features/code-cursor.nix
     ./features/cryptomator.nix
     ./features/digikam.nix
@@ -16,6 +17,7 @@
     ./features/ente.nix
     ./features/filen-desktop.nix
     ./features/firefox.nix
+    ./features/gemini.nix
     ./features/hugo.nix
     ./features/joplin.nix
     ./features/obsidian.nix
