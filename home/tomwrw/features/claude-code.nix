@@ -11,9 +11,12 @@
   home.persistence."/persist" = {
     directories = [
       # Persisted directories go here (if needed).
+      ".claude"
     ];
     files = [
       # Persisted files go here (if needed).
+      ".claude.json"
+      ".claude.json.backup"
     ];
   };
 }

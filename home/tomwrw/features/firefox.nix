@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   programs.firefox.enable = true;
 
   programs.firefox.policies = {
@@ -50,42 +54,7 @@
       action = "useSystemDefault"; # Open Element app
       ask = false;
     };
-    # extensions
-    ExtensionSettings = {
-      # BitWarden password manager.
-      "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
-        installation_mode = "force_installed";
-        install_url = "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpi";
-        updates_disabled = false;
-        default_area = "navbar";
-        private_browsing = true;
-      };
-      # AdGuard. I was previously using uBlock Origin but it
-      # was starting to fail with YouTube.
-      "adguardadblocker@adguard.com" = {
-        installation_mode = "force_installed";
-        install_url = "https://addons.mozilla.org/firefox/downloads/latest/adguard-adblocker/latest.xpi";
-        updates_disabled = false;
-        default_area = "navbar";
-        private_browsing = true;
-      };
-      # Firefox containers add-in.
-      "@testpilot-containers" = {
-        installation_mode = "force_installed";
-        install_url = "https://addons.mozilla.org/firefox/downloads/latest/multi-account-containers/latest.xpi";
-        updates_disabled = false;
-        default_area = "navbar";
-        private_browsing = true;
-      };
-      # Kagi Search extension.
-      "search@kagi.com" = {
-        installation_mode = "force_installed";
-        install_url = "https://addons.mozilla.org/firefox/downloads/latest/kagi-search-for-firefox/latest.xpi";
-        updates_disabled = false;
-        default_area = "navbar";
-        private_browsing = true;
-      };
-    };
+
     Preferences = {
       "browser.urlbar.suggest.searches" = true; # Need this for basic search suggestions
       "browser.urlbar.shortcuts.bookmarks" = false;
@@ -120,6 +89,42 @@
         amazondotcome-us.metaData.hidden = true;
         wikipedia.metaData.hidden = true;
       };
+    };
+  };
+
+  # Extensions. Install extensions from firefox-addons
+  # which are more secure, verified, than previous xpi method.
+  programs.firefox.profiles.default.extensions.packages = with inputs.firefox-addons.packages.${pkgs.stdenv.system}; [
+    bitwarden
+    multi-account-containers
+    kagi-search
+    ublock-origin
+  ];
+  # Configure extension behavior (toolbar pinning, etc.).
+  programs.firefox.policies.ExtensionSettings = {
+    # Bitwarden - pin to toolbar.
+    "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
+      installation_mode = "normal_installed";
+      default_area = "navbar";
+      private_browsing = true;
+    };
+    # uBlock Origin - pin to toolbar.
+    "uBlock0@raymondhill.net" = {
+      installation_mode = "normal_installed";
+      default_area = "navbar";
+      private_browsing = true;
+    };
+    # Multi-Account Containers - pin to toolbar
+    "@testpilot-containers" = {
+      installation_mode = "normal_installed";
+      default_area = "navbar";
+      private_browsing = true;
+    };
+    # Kagi Search - pin to toolbar
+    "search@kagi.com" = {
+      installation_mode = "normal_installed";
+      default_area = "navbar";
+      private_browsing = true;
     };
   };
 
