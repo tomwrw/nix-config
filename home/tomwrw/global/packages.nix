@@ -2,13 +2,10 @@
   # Include some packages by default. I typically
   # include anything I need to work with nix.
   home.packages = with pkgs; [
-    alejandra # Opinionated Nix code formatter.
     bc # Arbitrary-precision calculator language.
     bottom # Cross-platform graphical process/system monitor.
     eza # Modern replacement for `ls`.
     fastfetch # Highly customizable system information tool.
-    fd # Simple, fast, user-friendly alternative to `find`.
-    jq # Command-line JSON processor.
     ncdu # Disk usage analyzer for the terminal.
     nh # NixOS configuration helper and cleaner.
     nix-diff # Tool to compare two Nix derivations.
@@ -16,6 +13,5 @@
     nixd # Nix language server.
     nixfmt-rfc-style # Nix code formatter conforming to RFC 0048.
     nvd # Nix vulnerability scanner.
-    ripgrep # Line-oriented search tool (recursive `grep`).
   ];
 }
