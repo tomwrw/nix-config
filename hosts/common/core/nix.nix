@@ -32,8 +32,6 @@
       # explaination of sensible defaults.
       connect-timeout = 5;
       log-lines = 25;
-      min-free = 128000000;
-      max-free = 1000000000;
       # Add the root user and wheel group as trusted.
       trusted-users = [
         "root"
@@ -50,6 +48,23 @@
         "nix-command"
         "flakes"
       ];
+      # Build performance.
+      max-jobs = "auto";
+      # Use all cores if set to zero.
+      cores = 0;
+      # Better error messages.
+      show-trace = true;
+      # Sandbox builds for security.
+      sandbox = true;
+      # Keep build logs for debugging.
+      keep-build-log = true;
+      # Fallback to building if binary cache fails.
+      fallback = true;
+      # Prevent builds from eating all disk space.
+      # 512MB min-free.
+      min-free = lib.mkDefault 536870912;
+      # 1GB max-free.
+      max-free = lib.mkDefault 1073741824;
     };
     # Garbage collection settings to automate the process
     # of cleaning stale generations and store items.
