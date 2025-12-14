@@ -46,7 +46,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # A Nix flake for customising the Spotify client with Spicetify.
-    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # Theme engine stylix for custom colours and themeing.
     stylix = {
       url = "github:nix-community/stylix";
