@@ -30,7 +30,7 @@
     ../../common/optional/cachyos.nix
     ../../common/optional/ephemeral-btrfs.nix
     ../../common/optional/graphics.nix
-    #../../common/optional/lanzaboote.nix
+    ../../common/optional/lanzaboote.nix
     ../../common/optional/pipewire.nix
     ../../common/optional/gaming.nix
     # Import my user configs.
