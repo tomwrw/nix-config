@@ -10,12 +10,6 @@
     firewall.enable = lib.mkForce true;
     networkmanager = {
       enable = true;
-      wifi.backend = "iwd";
     };
   };
-
-  # Install the following packages as part of this module.
-  environment.systemPackages = with pkgs; [
-    iwd
-  ];
 }
