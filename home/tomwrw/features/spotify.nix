@@ -12,7 +12,7 @@ in {
   # Enable spicetify-nix and extensions.
   programs.spicetify = {
     enable = true;
-    wayland = true;
+    wayland = false;
     enabledExtensions = with spicePkgs.extensions; [
       playlistIcons
       historyShortcut
