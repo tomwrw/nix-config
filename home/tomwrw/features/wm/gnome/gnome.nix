@@ -80,6 +80,31 @@
       binding = "<Super>Return";
     };
   };
+  # Set XDG config for things like known directories and custom dirs.
+  # Without this, nautilus won't show the bookmarks in the sidebar.
+  xdg = {
+    enable = true;
+    mime.enable = true;
+    mimeApps.enable = true;
+    userDirs = {
+      enable = true;
+      createDirectories = true;
+      music = "${config.home.homeDirectory}/Music";
+      videos = "${config.home.homeDirectory}/Videos";
+      pictures = "${config.home.homeDirectory}/Pictures";
+      templates = "${config.home.homeDirectory}/Documents/Templates";
+      download = "${config.home.homeDirectory}/Downloads";
+      documents = "${config.home.homeDirectory}/Documents";
+      desktop = "${config.home.homeDirectory}/Desktop";
+      # I don't need the public share.
+      publicShare = null;
+      # Below are my custom XDG directories.
+      extraConfig = {
+        XDG_DEVELOPMENT = "${config.home.homeDirectory}/Development";
+        XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/Screenshots";
+      };
+    };
+  };
   # This app requires the following persisted directories
   # and folders. Be This will only apply if impermanence is
   # enabled, and as soon as a user and host become out of
