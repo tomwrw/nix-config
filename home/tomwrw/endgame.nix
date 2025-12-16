@@ -22,7 +22,7 @@
     ./features/joplin.nix
     ./features/obsidian.nix
     ./features/signal-desktop.nix
-    ./features/spotify.nix
+    ./features/spicetify.nix
     ./features/terraform.nix
     ./features/vesktop.nix
     ./features/vscodium.nix
