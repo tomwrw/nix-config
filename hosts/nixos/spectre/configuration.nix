@@ -27,9 +27,9 @@
     # Optional configs to import for this host. If an optional
     # config becomes global, and needs to apply to all my hosts,
     # it gets moved to global.
-    ../../common/optional/cachyos.nix
     ../../common/optional/ephemeral-btrfs.nix
     ../../common/optional/graphics.nix
+    ../../common/optional/kernel.nix
     ../../common/optional/lanzaboote.nix
     ../../common/optional/pipewire.nix
     ../../common/optional/gaming.nix
