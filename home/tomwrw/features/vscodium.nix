@@ -14,6 +14,7 @@
           "git.confirmSync" = false;
           "git.enableSmartCommit" = true;
           "git.autofetch" = true;
+          "git.allowForcePush" = true;
           "explorer.confirmDragAndDrop" = false;
           "explorer.confirmDelete" = false;
         };
