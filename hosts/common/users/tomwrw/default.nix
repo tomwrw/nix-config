@@ -6,7 +6,7 @@
   ...
 }:
 with lib; let
-  # TODO: Add your username, hashed password and ssh key.
+  # Configure user settings for NixOS.
   username = "tomwrw";
   sshKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFCIJ1LhkFDBZaZU/bf8Y3XyCXb3RnVxg4gRs6i+XbSe tomwrw@proton.me";
   # Store the hostname for deriving the home file path.

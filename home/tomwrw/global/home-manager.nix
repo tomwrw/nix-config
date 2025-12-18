@@ -23,7 +23,7 @@
   };
   # Set up my Home Manager instance.
   home = {
-    # TODO: Adjust username here accordingly.
+    # Configure user settings for home-manager.
     username = lib.mkDefault "tomwrw";
     homeDirectory = lib.mkDefault "/home/${config.home.username}";
     sessionPath = ["$HOME/.local/bin"];
