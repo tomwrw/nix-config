@@ -13,5 +13,5 @@
       ./zsh.nix
     ]
     # Include any custom Home Manager modules I have defined.
-    ++ (builtins.attrValues outputs.homeManagerModules);
+    ++ (builtins.attrValues outputs.homeModules);
 }

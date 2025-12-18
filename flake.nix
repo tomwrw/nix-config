@@ -84,7 +84,7 @@
     # Expose custom NixOS modules for the configuration.
     nixosModules = import ./modules/nixos;
     # Expose custom Home Manager modules for user configurations.
-    homeManagerModules = import ./modules/home-manager;
+    homeModules = import ./modules/home-manager;
     # Expose custom packages as overlays.
     overlays = import ./overlays {inherit inputs outputs;};
     # Build custom packages from the local pkgs directory.
