@@ -10,6 +10,7 @@
       ./neovim.nix
       ./packages.nix
       ./persists.nix
+      ./sops.nix
       ./stylix.nix
       ./zsh.nix
     ]

@@ -1,7 +1,10 @@
 keys:
+  # Host keys - age derived from SSH (for NixOS system-level secrets).
   - &host_endgame age1kycw37ha3v77x5kt3mvzjcvhfrflmkpnv79wpu48xu6t2ffaxgtq4vzf3r
   - &host_flatmate age1y6knzax67dgyd6qvdvklw3jth77apwgs7d3swcd3pq6cqrpyjq4qut6hsq
   - &host_spectre age1sgw3lacqc4msu0euwp62jkgnc23x2v2ukqr5rk8y5r6qv03kzfysn7v33e
+  # User keys - age (for home-manager secrets).
+  - &user_tomwrw age1txyqv8vphkv2r2gnhqlljda2wuhw8p0lgta6wtqcf4denff7g3kqasaqh6
 creation_rules:
   - path_regex: secrets/secrets.yaml
     key_groups:
@@ -9,3 +12,4 @@ creation_rules:
       - *host_endgame
       - *host_flatmate
       - *host_spectre
+      - *user_tomwrw

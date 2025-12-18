@@ -23,6 +23,7 @@
     ./features/obsidian.nix
     ./features/signal-desktop.nix
     ./features/spicetify.nix
+    ./features/syncthing.nix
     ./features/terraform.nix
     ./features/vesktop.nix
     ./features/vscodium.nix
