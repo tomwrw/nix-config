@@ -43,6 +43,13 @@ in {
                   "--perf-no_write_workqueue"
                 ];
                 settings = {
+                  # Security consideration:
+                  # TRIM/discard operations on SSDs can leak information about
+                  # which blocks are unused, potentially revealing filesystem
+                  # structure or metadata patterns. This is a common compromise
+                  # for SSD performance and longevity. The risk is generally
+                  #  acceptable for me but worth documenting. See the above
+                  # --allow-discards extraOptionArgs too.
                   allowDiscards = true;
                 };
                 content = {
