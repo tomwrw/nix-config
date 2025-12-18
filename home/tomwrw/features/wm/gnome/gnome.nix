@@ -60,7 +60,7 @@
         "element-desktop.desktop"
         "vesktop.desktop"
         "com.github.xeco23.WasIstLos.desktop"
-        "signal.desktop'"
+        "signal.desktop"
       ];
       last-selected-power-profile = "performance";
     };
