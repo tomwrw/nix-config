@@ -53,6 +53,8 @@
         "com.mitchellh.ghostty.desktop"
         "firefox.desktop"
         "codium.desktop"
+        "obsidian.desktop"
+        "syncthing-ui.desktop"
         "virt-manager.desktop"
         "spotify.desktop"
         "element-desktop.desktop"
