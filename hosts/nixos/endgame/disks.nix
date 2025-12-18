@@ -1,4 +1,4 @@
-# Disk configuration file for disko for the host 'otacon'.
+# Disk configuration file for disko for the host 'endgame'.
 # There are some specific configurations in this disko
 # file that are needed for my impermanence setup to work.
 # The primary btrfs volume needs to be labelled 'nixos'
