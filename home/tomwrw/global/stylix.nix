@@ -10,5 +10,9 @@
   stylix = {
     enable = true;
     autoEnable = true;
+    # Disable overlays in home-manager as they conflict
+    # with useGlobalPkgs. These should be applied at the
+    # NixOS level instead.
+    overlays.enable = false;
   };
 }
