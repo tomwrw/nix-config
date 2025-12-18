@@ -87,6 +87,16 @@
     enable = true;
     mime.enable = true;
     mimeApps.enable = true;
+    # Nautilus sidebar bookmarks.
+    configFile."gtk-3.0/bookmarks".text = ''
+      file://${config.xdg.userDirs.download} Downloads
+      file://${config.xdg.userDirs.documents} Documents
+      file://${config.xdg.userDirs.pictures} Pictures
+      file://${config.xdg.userDirs.videos} Videos
+      file://${config.xdg.userDirs.music} Music
+      file://${config.home.homeDirectory}/Sync Sync
+      file://${config.home.homeDirectory}/Development Development
+    '';
     userDirs = {
       enable = true;
       createDirectories = true;
