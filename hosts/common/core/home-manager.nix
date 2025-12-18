@@ -8,9 +8,11 @@
     inputs.home-manager.nixosModules.home-manager
   ];
   # Home-Manager config.
-  home-manager.useUserPackages = true;
-  home-manager.backupFileExtension = "backup";
-  home-manager.extraSpecialArgs = {
-    inherit inputs outputs;
+  home-manager = {
+    useUserPackages = true;
+    backupFileExtension = "backup";
+    extraSpecialArgs = {
+      inherit inputs outputs;
+    };
   };
 }

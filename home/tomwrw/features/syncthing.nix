@@ -51,7 +51,7 @@ in {
       overrideDevices = true;
       overrideFolders = true;
       # Generate the devices block from the hostIdentifiers.
-      devices = lib.mapAttrs (name: id: {inherit id;}) hostIdentifiers;
+      devices = lib.mapAttrs (_: id: {inherit id;}) hostIdentifiers;
       # Specify additional options for Syncthing here.
       options = {
         # Keep traffic local and disable external relay/discovery.

@@ -5,12 +5,7 @@
 # using the extraArgs = ["-L" "nixos" "-f"]; setting,
 # and I also use a postCreateHook to generate a blank
 # root snapshot when the host is first created.
-{
-  config,
-  inputs,
-  outputs,
-  ...
-}: let
+{inputs, ...}: let
   diskId = "/dev/vda";
 in {
   imports = [

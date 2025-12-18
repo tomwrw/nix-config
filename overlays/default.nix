@@ -1,12 +1,4 @@
-{
-  outputs,
-  inputs,
-}: let
-  addPatches = pkg: patches:
-    pkg.overrideAttrs (oldAttrs: {
-      patches = (oldAttrs.patches or []) ++ patches;
-    });
-in {
+{inputs, ...}: {
   # This overlay provides a convenient way to access the packages from all
   # flake inputs. For each input, it creates an attribute set under `pkgs.inputs`
   # (e.g., `pkgs.inputs.spicetify-nix`). This makes it easy to use packages

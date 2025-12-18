@@ -61,7 +61,6 @@
     nixpkgs,
     home-manager,
     systems,
-    lanzaboote,
     ...
   } @ inputs: let
     # Inherit outputs from the current flake.
@@ -92,6 +91,29 @@
     packages = forEachSystem (pkgs: import ./pkgs {inherit pkgs;});
     # Specify the Nix file formatter to be used by nix fmt.
     formatter = forEachSystem (pkgs: pkgs.alejandra);
+    # Define flake checks to validate the configuration.
+    # Run with: nix flake check.
+    checks = forEachSystem (pkgs: {
+      # Verify all Nix files are properly formatted.
+      formatting = pkgs.runCommand "check-formatting" {} ''
+        cd ${./.}
+        ${pkgs.alejandra}/bin/alejandra --check . 2>&1 || {
+          echo "Run 'nix fmt' to fix formatting issues"
+          exit 1
+        }
+        touch $out
+      '';
+      # Find dead code and unused variables.
+      deadnix = pkgs.runCommand "check-deadnix" {} ''
+        ${pkgs.deadnix}/bin/deadnix --fail ${./.}
+        touch $out
+      '';
+      # Lint for common Nix anti-patterns.
+      statix = pkgs.runCommand "check-statix" {} ''
+        ${pkgs.statix}/bin/statix check ${./.}
+        touch $out
+      '';
+    });
     # Define a development shell with specific tools
     # for working on the flake, such as alejandra
     # for formatting and git for version control.
@@ -100,7 +122,9 @@
         packages = [
           # Packages to include in devShell.
           pkgs.alejandra
+          pkgs.deadnix
           pkgs.git
+          pkgs.statix
         ];
       };
     });

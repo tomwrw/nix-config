@@ -1,10 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  inputs,
-  ...
-}: {
+_: {
   # This app requires the following persisted directories
   # and folders. Be This will only apply if impermanence is
   # enabled, and as soon as a user and host become out of

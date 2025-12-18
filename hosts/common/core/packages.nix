@@ -1,9 +1,4 @@
-{
-  lib,
-  outputs,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   # Packages installed on all hosts go here.
   environment.systemPackages = with pkgs; [
     alejandra

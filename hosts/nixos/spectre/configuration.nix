@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+_: {
   # Set the host-specific hostname here.
   networking = {
     hostName = "spectre";

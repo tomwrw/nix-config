@@ -1,4 +1,4 @@
-{...}: let
+_: let
   rollbackScript = ''
     mkdir /mnt
     mount -t btrfs -o subvol=/ /dev/disk/by-label/nixos /mnt

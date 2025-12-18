@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+_: {
   # graphics drivers / HW accel.
   hardware.graphics = {
     enable = true;
