@@ -24,7 +24,6 @@ in {
       GatewayPorts = "clientspecified";
       # Let WAYLAND_DISPLAY be forwarded.
       AcceptEnv = "WAYLAND_DISPLAY";
-      X11Forwarding = true;
     };
     # Format and path for the auto-generated host
     # ssh keys. If persistance is used map to persist.

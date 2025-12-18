@@ -4,22 +4,6 @@
     rtkit.enable = true;
     polkit.enable = true;
   };
-  # Enable passwordless sudo for members
-  # of wheel group.
-  security.sudo = {
-    enable = true;
-    extraRules = [
-      {
-        commands = [
-          {
-            command = "ALL";
-            options = ["NOPASSWD"];
-          }
-        ];
-        groups = ["wheel"];
-      }
-    ];
-  };
   # Enable PAM security settings for all hosts.
   security.pam = {
     # Enable the logon unlock of GNOME keyring.
