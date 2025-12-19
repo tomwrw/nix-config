@@ -14,5 +14,13 @@
     # with useGlobalPkgs. These should be applied at the
     # NixOS level instead.
     overlays.enable = false;
+    # Set up firefox target and disable any targets that
+    # use custom coloring in the module itself.
+    targets = {
+      firefox = {
+        firefoxGnomeTheme.enable = true;
+        profileNames = ["default"];
+      };
+    };
   };
 }

@@ -43,14 +43,6 @@
     base16Scheme = "${pkgs.base16-schemes}/share/themes/everforest.yaml";
     image = ../../assets/wallpaper/hanged-man-tree.png;
     polarity = "dark";
-    # Set up firefox target and disable any targets that
-    # use custom coloring in the module itself.
-    targets = {
-      firefox = {
-        firefoxGnomeTheme.enable = true;
-        profileNames = ["default"];
-      };
-    };
     # Set my cursor preferences.
     cursor = {
       package = pkgs.bibata-cursors;
