@@ -24,7 +24,7 @@
     };
     # Secure Boot for NixOS.
     lanzaboote = {
-      url = "github:tomwrw/lanzaboote";
+      url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # Input for sops-nix secrets management.
