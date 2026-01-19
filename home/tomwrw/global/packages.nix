@@ -11,7 +11,7 @@
     nix-diff # Tool to compare two Nix derivations.
     nix-output-monitor # Monitors and shows build logs for Nix.
     nixd # Nix language server.
-    nixfmt-rfc-style # Nix code formatter conforming to RFC 0048.
+    nixfmt # Nix code formatter conforming to RFC 0048.
     nvd # Nix vulnerability scanner.
   ];
 }
