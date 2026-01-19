@@ -27,7 +27,7 @@
     ./features/spicetify.nix
     ./features/syncthing.nix
     ./features/terraform.nix
-    #./features/vesktop.nix
+    ./features/vesktop.nix
     ./features/vscodium.nix
     ./features/whatsapp.nix
     # Import my desktop/window manager/compositor.
