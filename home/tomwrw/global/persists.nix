@@ -2,7 +2,7 @@
   imports = [
     # Import the Home Manager impermanence module in case
     # we have it declared for our system.
-    inputs.impermanence.homeManagerModules.impermanence
+    # inputs.impermanence.homeManagerModules.impermanence
   ];
   # Global persists for anything that could be global
   # or optional for Home Manager configs, like Steam.

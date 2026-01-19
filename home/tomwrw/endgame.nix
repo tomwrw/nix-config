@@ -14,18 +14,20 @@
     ./features/cryptomator.nix
     ./features/digikam.nix
     ./features/element-desktop.nix
-    ./features/ente.nix
+    ./features/ente-auth.nix
+    ./features/ente-desktop.nix
     ./features/filen-desktop.nix
     ./features/firefox.nix
     ./features/gemini.nix
     ./features/hugo.nix
     ./features/joplin.nix
     ./features/obsidian.nix
+    ./features/protonvpn-gui.nix
     ./features/signal-desktop.nix
     ./features/spicetify.nix
     ./features/syncthing.nix
     ./features/terraform.nix
-    ./features/vesktop.nix
+    #./features/vesktop.nix
     ./features/vscodium.nix
     ./features/whatsapp.nix
     # Import my desktop/window manager/compositor.
@@ -33,7 +35,7 @@
   ];
   # Set up my Home Manager instance.
   home = {
-    stateVersion = lib.mkDefault "25.11";
+    stateVersion = lib.mkDefault "26.05";
   };
   # Set up theming for this user on this host using stylix.
   # This is important as I refer to stylix lib and colors

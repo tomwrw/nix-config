@@ -11,7 +11,7 @@
     ./features/bitwarden.nix
     ./features/code-cursor.nix
     ./features/cryptomator.nix
-    ./features/ente.nix
+    ./features/ente-auth.nix
     ./features/filen-desktop.nix
     ./features/firefox.nix
     ./features/hugo.nix

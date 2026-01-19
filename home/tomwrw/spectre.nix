@@ -13,7 +13,7 @@
     ./features/cryptomator.nix
     ./features/digikam.nix
     ./features/element-desktop.nix
-    ./features/ente.nix
+    ./features/ente-auth.nix
     ./features/filen-desktop.nix
     ./features/firefox.nix
     ./features/hugo.nix
