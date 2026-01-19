@@ -10,7 +10,7 @@
   home.persistence."/persist" = {
     directories = [
       # Persisted directories go here (if needed).
-      #".config/ente"
+      ".config/Proton"
     ];
     files = [
       # Persisted files go here (if needed).
