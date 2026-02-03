@@ -37,7 +37,7 @@
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     # A Nix module for declarative disk partitioning.
     disko = {
-      url = "github:nix-community/disko/v1.11.0";
+      url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # Provides Firefox extensions as Nix packages.
