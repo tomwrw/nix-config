@@ -29,38 +29,4 @@
   stable = final: _: {
     stable = inputs.nixpkgs-stable.legacyPackages.${final.stdenv.hostPlatform.system};
   };
-
-  # Temporarily pin sunshine to the stable version. The nixpkgs-unstable build
-  # of sunshine (2025.924.154138) attempts to fetch Boost via CMake FetchContent
-  # during the build, which fails in Nix's sandbox. Remove this override once
-  # the upstream nixpkgs issue is resolved.
-  sunshine-stable = final: _: {
-    sunshine = final.stable.sunshine;
-  };
-
-  # Temporarily disable picosvg tests which are failing in nixpkgs-unstable due
-  # to floating-point SVG path value mismatches. picosvg is a transitive
-  # dependency of jetbrains-mono (via nanoemoji and gftools). Remove this
-  # override once the upstream nixpkgs issue is resolved.
-  picosvg-nocheck = _: prev: {
-    pythonPackagesExtensions =
-      prev.pythonPackagesExtensions
-      ++ [
-        (_: pysuper: {
-          picosvg = pysuper.picosvg.overridePythonAttrs (_: {
-            doCheck = false;
-          });
-        })
-      ];
-  };
-
-  #linux-firmware-override = final: prev: {
-  #  linux-firmware = prev.linux-firmware.overrideAttrs (old: rec {
-  #    version = "20250509";
-  #    src = prev.fetchzip {
-  #      url = "https://cdn.kernel.org/pub/linux/kernel/firmware/linux-firmware-${version}.tar.xz";
-  #      hash = "sha256-0FrhgJQyCeRCa3s0vu8UOoN0ZgVCahTQsSH0o6G6hhY=";
-  #    };
-  #   });
-  #};
 }
