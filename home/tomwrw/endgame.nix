@@ -8,7 +8,6 @@
     # I apply to all my Home Manager hosts for this user.
     ./global
     # Import my features for the user on this host.
-    ./features/bitwarden.nix
     ./features/claude-code.nix
     ./features/code-cursor.nix
     ./features/cryptomator.nix
