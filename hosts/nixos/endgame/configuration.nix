@@ -75,6 +75,7 @@
   # Host specific apps go here. These will only be
   # installed on this host.
   environment.systemPackages = with pkgs; [
+    azure-cli
     hello
     unetbootin
   ];
