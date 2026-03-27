@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    protonvpn-gui
+    proton-vpn
   ];
   # This app requires the following persisted directories
   # and folders. Be This will only apply if impermanence is
