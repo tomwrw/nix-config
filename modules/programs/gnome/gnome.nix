@@ -1,0 +1,103 @@
+{inputs, ...}: {
+  flake.modules.nixos.gnome = {pkgs, ...}: {
+    home-manager.sharedModules = [
+      inputs.self.modules.homeManager.gnome
+    ];
+
+    services.displayManager.gdm = {
+      enable = true;
+      wayland = true;
+    };
+    services.desktopManager.gnome.enable = true;
+
+    programs.dconf.enable = true;
+    xdg.portal.enable = true;
+
+    environment.systemPackages = with pkgs; [
+      dconf-editor
+      gnome-tweaks
+    ];
+
+    environment.gnome.excludePackages = with pkgs; [
+      atomix
+      cheese
+      epiphany
+      geary
+      gedit
+      gnome-characters
+      gnome-contacts
+      gnome-initial-setup
+      gnome-music
+      gnome-photos
+      gnome-tour
+      hitori
+      iagno
+      tali
+      yelp
+    ];
+  };
+
+  flake.modules.homeManager.gnome = {pkgs, ...}: {
+    home.packages = with pkgs; [
+      gnomeExtensions.appindicator
+      gnomeExtensions.user-themes
+    ];
+
+    dconf.settings = {
+      "org/gnome/desktop/interface" = {
+        color-scheme = "prefer-dark";
+        show-battery-percentage = true;
+        enable-hot-corners = true;
+      };
+
+      "org/gnome/desktop/wm/preferences" = {
+        button-layout = ":appmenu,minimize,maximize,close";
+        resize-with-right-button = true;
+      };
+
+      "org/gnome/desktop/wm/keybindings" = {
+        close = ["<Super>q"];
+      };
+
+      "org/gnome/desktop/peripherals/touchpad" = {
+        tap-to-click = true;
+        natural-scroll = true;
+      };
+
+      "org/gnome/mutter" = {
+        edge-tiling = true;
+        dynamic-workspaces = true;
+      };
+
+      "org/gnome/settings-daemon/plugins/power" = {
+        sleep-inactive-ac-type = "nothing";
+      };
+
+      "org/gnome/shell" = {
+        disable-user-extensions = false;
+        enabled-extensions = with pkgs.gnomeExtensions; [
+          appindicator.extensionUuid
+          user-themes.extensionUuid
+        ];
+        last-selected-power-profile = "performance";
+      };
+
+      "org/gnome/desktop/applications/terminal" = {
+        exec = "ghostty";
+        exec-arg = "";
+      };
+
+      "org/gnome/settings-daemon/plugins/media-keys" = {
+        custom-keybindings = [
+          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+        ];
+      };
+
+      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+        name = "Terminal";
+        command = "ghostty";
+        binding = "<Super>Return";
+      };
+    };
+  };
+}
