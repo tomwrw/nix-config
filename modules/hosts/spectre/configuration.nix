@@ -11,6 +11,8 @@ in {
       impermanence
       kernel-cachyos
       gnome
+      # Users.
+      tomwrw
     ];
   };
 }
