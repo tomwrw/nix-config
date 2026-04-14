@@ -1,5 +1,13 @@
-{
-  flake.modules.nixos.impermanence = {config, ...}: {
+{inputs, ...}: {
+  flake-file.inputs = {
+    impermanence.url = "github:nix-community/impermanence";
+  };
+
+  flake.modules.nixos.impermanence = {
+    imports = [
+      inputs.impermanence.nixosModules.impermanence
+    ];
+
     environment.persistence."/persist" = {
       hideMounts = true;
       directories = [

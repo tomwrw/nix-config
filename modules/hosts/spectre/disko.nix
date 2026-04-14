@@ -2,10 +2,9 @@
 # The primary btrfs volume is labelled 'nixos' and a blank root
 # snapshot is created on first install for use with impermanence.
 {inputs, ...}: let
-  hostname = "spectre";
   diskId = "/dev/vda";
 in {
-  flake.modules.nixos."${hostname}" = {
+  flake.modules.nixos.spectre = {
     imports = with inputs.self.modules.nixos; [
       disko
     ];

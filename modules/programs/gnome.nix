@@ -1,17 +1,10 @@
-{inputs, ...}: {
+{
   flake.modules.nixos.gnome = {pkgs, ...}: {
-    home-manager.sharedModules = [
-      inputs.self.modules.homeManager.gnome
-    ];
-
     services.displayManager.gdm = {
       enable = true;
       wayland = true;
     };
     services.desktopManager.gnome.enable = true;
-
-    programs.dconf.enable = true;
-    xdg.portal.enable = true;
 
     environment.systemPackages = with pkgs; [
       dconf-editor
