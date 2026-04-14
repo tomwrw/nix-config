@@ -1,7 +1,16 @@
 cachyos-cache := "--option extra-substituters 'https://attic.xuyh0120.win/lantian' --option extra-trusted-public-keys 'lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc='"
 
-spectre-deploy:
-    nix --extra-experimental-features 'nix-command flakes' run github:nix-community/nixos-anywhere -- --disko-mode disko --flake .#spectre --target-host nixos@spectre {{ cachyos-cache }}
+# Decrypt the committed host age key + LUKS passphrase for a nixos-anywhere deploy.
+prep HOST:
+    rm -rf /tmp/extra-files /tmp/luks-password
+    mkdir -p /tmp/extra-files/var/lib/sops-nix
+    age -d -i ~/.config/sops/age/keys.txt keys/{{ HOST }}.enc > /tmp/extra-files/var/lib/sops-nix/key.txt
+    chmod 600 /tmp/extra-files/var/lib/sops-nix/key.txt
+    sops -d --extract '["luks-passphrase"]' secrets/{{ HOST }}.yaml > /tmp/luks-password
+    chmod 600 /tmp/luks-password
+
+spectre-deploy: (prep "spectre")
+    nix --extra-experimental-features 'nix-command flakes' run github:nix-community/nixos-anywhere -- --disko-mode disko --extra-files /tmp/extra-files --disk-encryption-keys /tmp/luks-password /tmp/luks-password --flake .#spectre --target-host nixos@spectre {{ cachyos-cache }}
 
 spectre-build:
     nixos-rebuild build --flake .#spectre {{ cachyos-cache }}
@@ -9,14 +18,14 @@ spectre-build:
 spectre-rebuild:
     nixos-rebuild switch --flake .#spectre --target-host tomwrw@spectre --ask-sudo-password {{ cachyos-cache }}
 
-endgame-deploy:
-    nix --extra-experimental-features 'nix-command flakes' run github:nix-community/nixos-anywhere -- --disko-mode disko --extra-files /tmp/extra-files --flake .#endgame --target-host nixos@endgame
+endgame-deploy: (prep "endgame")
+    nix --extra-experimental-features 'nix-command flakes' run github:nix-community/nixos-anywhere -- --disko-mode disko --extra-files /tmp/extra-files --disk-encryption-keys /tmp/luks-password /tmp/luks-password --flake .#endgame --target-host nixos@endgame
 
 endgame-rebuild:
     nixos-rebuild switch --flake .#endgame --target-host tomwrw@endgame --ask-sudo-password {{ cachyos-cache }}
 
-flatmate-deploy:
-    nix --extra-experimental-features 'nix-command flakes' run github:nix-community/nixos-anywhere -- --disko-mode disko --extra-files /tmp/extra-files --flake .#flatmate --target-host nixos@flatmate
+flatmate-deploy: (prep "flatmate")
+    nix --extra-experimental-features 'nix-command flakes' run github:nix-community/nixos-anywhere -- --disko-mode disko --extra-files /tmp/extra-files --disk-encryption-keys /tmp/luks-password /tmp/luks-password --flake .#flatmate --target-host nixos@flatmate
 
 flatmate-rebuild:
     nixos-rebuild switch --flake .#flatmate --target-host tomwrw@flatmate --ask-sudo-password {{ cachyos-cache }}

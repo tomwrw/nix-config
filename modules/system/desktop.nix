@@ -8,6 +8,7 @@
       networking
       nix-settings
       openssh
+      sops
     ];
 
     programs.dconf.enable = true;

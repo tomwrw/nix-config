@@ -32,6 +32,7 @@ in {
                 content = {
                   type = "luks";
                   name = "crypted";
+                  passwordFile = "/tmp/luks-password";
                   # These options can improve performance on NVMe drives by adjusting
                   # how LUKS handles I/O operations.
                   extraOpenArgs = [

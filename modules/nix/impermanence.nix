@@ -13,6 +13,7 @@
       directories = [
         "/var/log"
         "/var/lib/nixos"
+        "/var/lib/sops-nix"
         "/var/lib/systemd/coredump"
         "/etc/NetworkManager/system-connections"
       ];

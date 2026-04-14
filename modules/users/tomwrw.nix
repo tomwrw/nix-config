@@ -1,10 +1,19 @@
 {inputs, ...}: {
-  flake.modules.nixos.tomwrw = {pkgs, ...}: {
+  flake.modules.nixos.tomwrw = {
+    pkgs,
+    config,
+    ...
+  }: {
     imports = [inputs.self.modules.nixos.home-manager];
+
+    sops.secrets."password-tomwrw" = {
+      sopsFile = ../../secrets/shared.yaml;
+      neededForUsers = true;
+    };
 
     users.users.tomwrw = {
       isNormalUser = true;
-      initialPassword = "changeme";
+      hashedPasswordFile = config.sops.secrets."password-tomwrw".path;
       shell = pkgs.fish;
       extraGroups = ["wheel"];
       openssh.authorizedKeys.keys = [
