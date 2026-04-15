@@ -3,9 +3,9 @@ cachyos-cache := "--option extra-substituters 'https://attic.xuyh0120.win/lantia
 # Decrypt the committed host age key + LUKS passphrase for a nixos-anywhere deploy.
 prep HOST:
     rm -rf /tmp/extra-files /tmp/luks-password
-    mkdir -p /tmp/extra-files/var/lib/sops-nix
-    age -d -i ~/.config/sops/age/keys.txt keys/{{ HOST }}.enc > /tmp/extra-files/var/lib/sops-nix/key.txt
-    chmod 600 /tmp/extra-files/var/lib/sops-nix/key.txt
+    mkdir -p /tmp/extra-files/persist/var/lib/sops-nix
+    age -d -i ~/.config/sops/age/keys.txt keys/{{ HOST }}.enc > /tmp/extra-files/persist/var/lib/sops-nix/key.txt
+    chmod 600 /tmp/extra-files/persist/var/lib/sops-nix/key.txt
     sops -d --extract '["luks-passphrase"]' secrets/{{ HOST }}.yaml > /tmp/luks-password
     chmod 600 /tmp/luks-password
 

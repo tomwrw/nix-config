@@ -29,6 +29,7 @@
 
   flake.modules.homeManager.tomwrw = {pkgs, ...}: {
     imports = with inputs.self.modules.homeManager; [
+      ente-auth
       fish
       ghostty
       gnome
