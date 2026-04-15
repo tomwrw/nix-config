@@ -29,10 +29,17 @@
 
   flake.modules.homeManager.tomwrw = {pkgs, ...}: {
     imports = with inputs.self.modules.homeManager; [
+      element-desktop
+      ente-desktop
       ente-auth
+      filen-desktop
       fish
+      firefox
+      gaming
       ghostty
       gnome
+      signal-desktop
+      vscodium
     ];
 
     home.username = "tomwrw";

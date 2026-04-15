@@ -10,6 +10,7 @@
 
     imports = with inputs.self.modules.nixos; [
       desktop
+      gaming
       gnome
       impermanence
       kernel-cachyos
