@@ -9,11 +9,14 @@
     networking.domain = "home.arpa";
 
     imports = with inputs.self.modules.nixos; [
+      # NixOS modules to import.
       desktop
       gaming
       gnome
       impermanence
       kernel-cachyos
+      virt-manager
+      # User modules to import.
       tomwrw
     ];
   };
