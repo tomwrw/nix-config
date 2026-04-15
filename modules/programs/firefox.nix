@@ -64,8 +64,6 @@
           "browser.warnOnQuitShortcut" = false;
           "browser.tabs.loadInBackground" = true; # Load tabs automatically
           "media.ffmpeg.vaapi.enabled" = true; # Enable hardware acceleration
-          "browser.in-content.dark-mode" = true; # Use dark mode
-          "ui.systemUsesDarkTheme" = true;
           "extensions.autoDisableScopes" = 0; # Automatically enable extensions
           "extensions.update.enabled" = false;
           "widget.use-xdg-desktop-portal.file-picker" = 1; # Use new gtk file picker instead of legacy one

@@ -39,16 +39,33 @@
       ghostty
       gnome
       signal-desktop
+      stylix
       vscodium
     ];
 
     home.username = "tomwrw";
     home.homeDirectory = "/home/tomwrw";
-    home.stateVersion = "25.11";
+    home.stateVersion = "26.05";
 
     home.packages = with pkgs; [
       fastfetch
       ripgrep
     ];
+
+    stylix = {
+      enable = true;
+      polarity = "dark";
+      image = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath;
+      base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
+      overlays.enable = false;
+      targets.firefox = {
+        profileNames = ["default"];
+        firefoxGnomeTheme.enable = true;
+      };
+      #fonts.monospace = {
+      #  package = pkgs.nerd-fonts.jetbrains-mono;
+      #  name = "JetBrainsMono Nerd Font";
+      #};
+    };
   };
 }
