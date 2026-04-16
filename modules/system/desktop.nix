@@ -8,6 +8,7 @@
       networking
       nix-settings
       openssh
+      packages
       sops
     ];
 

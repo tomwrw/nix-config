@@ -15,6 +15,7 @@
       gnome
       impermanence
       kernel-cachyos
+      lanzaboote
       virt-manager
       # User modules to import.
       tomwrw
