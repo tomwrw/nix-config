@@ -3,26 +3,22 @@
   inputs,
   ...
 }: {
-  flake.modules.nixos.spectre = {
+  flake.modules.nixos.flatmate = {
     system.stateVersion = "25.11";
-    networking.hostName = "spectre";
+    networking.hostName = "flatmate";
     networking.domain = "home.arpa";
 
     imports = with inputs.self.modules.nixos; [
       # NixOS modules to import.
       desktop
-      gaming
+      boot
       gnome
       impermanence
       kernel-cachyos
-      lanzaboote
-      virt-manager
       # User modules to import.
       tomwrw
     ];
-
-    home-manager.users.tomwrw.imports = with inputs.self.modules.homeManager; [spotify];
   };
 
-  flake.nixosConfigurations = config.flake.lib.mkNixos "x86_64-linux" "spectre";
+  flake.nixosConfigurations = config.flake.lib.mkNixos "x86_64-linux" "flatmate";
 }

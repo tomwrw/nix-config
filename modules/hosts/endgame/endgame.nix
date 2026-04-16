@@ -3,9 +3,9 @@
   inputs,
   ...
 }: {
-  flake.modules.nixos.spectre = {
+  flake.modules.nixos.endgame = {
     system.stateVersion = "25.11";
-    networking.hostName = "spectre";
+    networking.hostName = "endgame";
     networking.domain = "home.arpa";
 
     imports = with inputs.self.modules.nixos; [
@@ -24,5 +24,5 @@
     home-manager.users.tomwrw.imports = with inputs.self.modules.homeManager; [spotify];
   };
 
-  flake.nixosConfigurations = config.flake.lib.mkNixos "x86_64-linux" "spectre";
+  flake.nixosConfigurations = config.flake.lib.mkNixos "x86_64-linux" "endgame";
 }

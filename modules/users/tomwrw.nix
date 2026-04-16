@@ -39,7 +39,6 @@
       ghostty
       gnome
       signal-desktop
-      spotify
       stylix
       vscodium
     ];
