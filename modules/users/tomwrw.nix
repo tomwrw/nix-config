@@ -36,6 +36,7 @@
       fish
       firefox
       gaming
+      git
       ghostty
       gnome
       signal-desktop
