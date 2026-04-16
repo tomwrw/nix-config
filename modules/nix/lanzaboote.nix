@@ -1,10 +1,11 @@
 {inputs, ...}: {
   flake-file.inputs.lanzaboote.url = "github:nix-community/lanzaboote";
 
-  flake.modules.nixos.lanzaboote = {lib, ...}: {
+  flake.modules.nixos.lanzaboote = {
     imports = [inputs.lanzaboote.nixosModules.lanzaboote];
 
-    boot.loader.systemd-boot.enable = lib.mkForce false;
+    boot.loader.systemd-boot.enable = false;
+    boot.loader.efi.canTouchEfiVariables = true;
     boot.lanzaboote = {
       enable = true;
       pkiBundle = "/var/lib/sbctl";

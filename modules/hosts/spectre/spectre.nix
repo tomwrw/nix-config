@@ -4,7 +4,7 @@
   ...
 }: {
   flake.modules.nixos.spectre = {
-    system.stateVersion = "26.05";
+    system.stateVersion = "25.11";
     networking.hostName = "spectre";
     networking.domain = "home.arpa";
 

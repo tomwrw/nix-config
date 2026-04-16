@@ -43,7 +43,7 @@
 
       trusted-users = [
         "root"
-        "@wheel"
+        "tomwrw"
       ];
     };
 

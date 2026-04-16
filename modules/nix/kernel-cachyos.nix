@@ -3,8 +3,8 @@
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
   };
 
-  flake.modules.nixos.kernel-cachyos = {
-    boot.kernelPackages = inputs.nix-cachyos-kernel.legacyPackages.x86_64-linux.linuxPackages-cachyos-latest;
+  flake.modules.nixos.kernel-cachyos = {pkgs, ...}: {
+    boot.kernelPackages = inputs.nix-cachyos-kernel.legacyPackages.${pkgs.stdenv.hostPlatform.system}.linuxPackages-cachyos-latest;
 
     nix.settings = {
       substituters = [

@@ -21,11 +21,6 @@
       };
       kernelModules = [];
       extraModulePackages = [];
-
-      loader = {
-        systemd-boot.enable = true;
-        efi.canTouchEfiVariables = true;
-      };
     };
 
     networking.useDHCP = lib.mkDefault true;

@@ -1,5 +1,10 @@
 {inputs, ...}: {
-  flake-file.inputs.spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+  flake-file.inputs = {
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
 
   flake.modules.homeManager.spotify = {pkgs, ...}: let
     spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};

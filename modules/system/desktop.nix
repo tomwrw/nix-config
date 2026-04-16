@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  flake.modules.nixos.desktop = {pkgs, ...}: {
+  flake.modules.nixos.desktop = {
     imports = with inputs.self.modules.nixos; [
       audio
       fonts
