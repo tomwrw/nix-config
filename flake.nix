@@ -1,7 +1,7 @@
 # DO-NOT-EDIT. This file was auto-generated using github:vic/flake-file.
 # Use `nix run .#write-flake` to regenerate it.
 {
-  description = "My nix-config, based on the dendritic pattern.";
+  description = "nix-config - a Dendritic NixOS and Home Manager configuration by tomwrw.";
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 
@@ -22,7 +22,10 @@
     };
     impermanence.url = "github:nix-community/impermanence";
     import-tree.url = "github:vic/import-tree";
-    lanzaboote.url = "github:nix-community/lanzaboote";
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
@@ -34,6 +37,9 @@
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    stylix.url = "github:danth/stylix";
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }

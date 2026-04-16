@@ -48,18 +48,30 @@
     home.homeDirectory = "/home/tomwrw";
     home.stateVersion = "25.11";
 
+    # Fix to silence the evaluation warning.
+    gtk.gtk4.theme = null;
+
     home.packages = with pkgs; [
+      nh # NixOS configuration helper and cleaner.
+      nix-diff # Tool to compare two Nix derivations.
+      nix-output-monitor # Monitors and shows build logs for Nix.
+      nixd # Nix language server.
+      nixfmt # Nix code formatter conforming to RFC 0048.
+      nvd # Nix vulnerability scanner.
     ];
 
     stylix = {
       enable = true;
       polarity = "dark";
-      image = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath;
-      base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
+      image = ../../assets/wallpaper/snake.png;
+      base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine-moon.yaml";
       overlays.enable = false;
-      targets.firefox = {
-        profileNames = ["default"];
-        firefoxGnomeTheme.enable = true;
+      targets = {
+        firefox = {
+          profileNames = ["default"];
+          firefoxGnomeTheme.enable = true;
+        };
+        qt.enable = false;
       };
     };
   };

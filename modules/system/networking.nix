@@ -1,7 +1,7 @@
 {
-  flake.modules.nixos.networking = {lib, ...}: {
+  flake.modules.nixos.networking = {
     networking = {
-      firewall.enable = lib.mkForce true;
+      firewall.enable = true;
       networkmanager.enable = true;
     };
   };

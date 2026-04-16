@@ -10,7 +10,7 @@
     inputs.flake-file.flakeModules.default
   ];
 
-  flake-file.description = "My nix-config, based on the dendritic pattern.";
+  flake-file.description = "nix-config - a Dendritic NixOS and Home Manager configuration by tomwrw.";
 
   flake-file.outputs = ''
     inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules)
