@@ -11,8 +11,5 @@
       packages
       sops
     ];
-
-    programs.dconf.enable = true;
-    xdg.portal.enable = true;
   };
 }
