@@ -1,7 +1,5 @@
-<p align="center">
-  <a href="https://nixos.org/"><img src="https://img.shields.io/badge/NixOS-25.11-blue?style=for-the-badge&logo=NixOS" alt="NixOS"></a>
-  <a href="https://github.com/nix-community/home-manager"><img src="https://img.shields.io/badge/Home--Manager-25.11-blue?style=for-the-badge&logo=Home-Assistant" alt="Home Manager"></a>
-</p>
+> [!WARNING]
+> Thank you for looking at my nix-config. I have archived this repo, as I have now moved over to the dendritic pattern for my NixOS configurations. You can find them over at [megadots](https://github.com/tomwrw/megadots). I will be leaving this repo archived in this state for future reference.
 
 # Introduction.
 
